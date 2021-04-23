@@ -14,8 +14,9 @@
     "name":"dasdfgfgdf",
     "tel": null,
     "birthday": "2021-3-22",
-    "email": "example@qq.com",
+    "email": "example@qq.com",     //email和tel 可以为null
     "gender":"0",
+    "job":"job",
     "address" : "address",
     "myid":"example_myid",           //传入myid参数自定义主表id字段名称,否则自动生成id字段名称
     "zone":"86",				 //传入zone代表手机区号,不传默认为81(日本)
