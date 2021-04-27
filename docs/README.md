@@ -160,9 +160,9 @@
 }
 ```
 
-# 1.4 Change user info 修改部分用户信息
+# 1.4 Change user info 修用户信息(不可修改ID和可修改ID)
 
-> 请求地址: http://example:8081/api/user/**{ID}**     请求方式: **POST**
+> **第一种方式(不能修改ID)**  请求地址: http://example:8081/api/user/**{ID}**     请求方式: **POST**
 >
 > 请求示例: http://example:8081/api/user/85962
 
@@ -220,6 +220,87 @@
 {
     "code": "400",
     "message": "not found user !",
+    "success": false
+}
+```
+
+------
+
+> **第二种方式(可修改ID)**  请求地址:  http://example:8081/api/user/update/userinfo    请求方式:  **POST**
+
+------
+
+> 请求体:
+
+```json
+{
+    "key": "android_1q2w3e4r",
+    "type": "normal",
+    "index":"180",                   //用户索引index
+    "idname":"kobe",                 //新的id名称,  不传入则代表不更新id
+    "tel": "12345698742",
+    "birthday": "2021-3-22",
+    "email": "569364127@qq.com",
+    "gender":"3",
+    "job":"it",
+    "name":"bbaa",
+    "address":"address",
+    "lev":"0",
+    "zone":"81",
+    "password":"233",
+    "avatar":"111111111.png"
+}
+```
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "type": "normal",
+        "index": "180",                 //用户索引
+        "id": "kobe",                   
+        "fid": null,
+        "lid": null,
+        "tid": null,
+        "lev": 1,
+        "name": "bbaa",
+        "profile_photo": null,
+        "birthday": "2021-03-22",
+        "email": "569364127@qq.com",
+        "gender": 3,
+        "job": "it",
+        "address": "address",
+        "tel": "12345698742",
+        "zone": "81",
+        "password": null,
+        "expires": null,
+        "avatar": "111111111.png",
+        "token": null
+    }
+}
+
+//新id的用户名已存在, 如果不修改id 则不用传入idname
+{
+    "code": "LME0001",        //用户名已存在 LME0001
+    "message": "用户已存在",
+    "success": false
+}
+
+//失败
+{
+    "code": "400",
+    "message": "email 已存在",
+    "success": false
+}
+//失败
+{
+    "code": "400",
+    "message": "tel 已存在",
     "success": false
 }
 ```
@@ -782,6 +863,41 @@
     "code": "400",
     "message": "nothing delete",
     "success": false
+}
+```
+
+# 2.8 Confirm password 确认密码
+
+> 请求地址:  http://example:8081/api/user/confirm/password   请求方式:  **POST**
+
+------
+
+> 请求体:
+
+```javascript
+{
+    "key": "ios_1q2w3e4r",
+    "type": "normal",
+    "index": "173",          //用户index索引
+    "password": "233333"     //用户密码
+}
+```
+
+> 响应体
+
+```json
+//确认失败
+{
+    "code": "LME0400",           //密码确认失败响应码:  LME0400
+    "message": "密码确认失败",
+    "success": false
+}
+
+//确认成功
+{
+    "code": "200",
+    "message": "confirm success",
+    "success": true
 }
 ```
 
