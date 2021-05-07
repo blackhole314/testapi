@@ -901,6 +901,108 @@
 }
 ```
 
+# 2.9 Get average score with date 获取日期内测试平均分
+
+> 请求地址:  http://example:8081/api/result/average/**{id}**    请求方式: **GET**
+>
+> 请求示例:  http://example:8081/api/result/average/ddddd?key=android_1q2w3e4r&type=normal
+
+------
+
+> 请求参数: key=android_1q2w3e4r   type=normal
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "2021-04-27": {
+            "total_score": 73,             //返回的值 都是当日平均值
+            "blackhead": 85,
+            "dark_circle": 44,
+            "wrinkle": 93,
+            "pore": 73,
+            "pockmark": 81,
+            "spot": 88,
+            "roughness": 80,
+            "moisture": 71,
+            "texture": 73,
+            "chloasma": 79,
+            "test_date_time": "2021-04-27"
+        },
+        "2021-04-24": {
+            "total_score": 83,
+            "blackhead": 95,
+            "dark_circle": 53,
+            "wrinkle": 93,
+            "pore": 88,
+            "pockmark": 88,
+            "spot": 88,
+            "roughness": 88,
+            "moisture": 74,
+            "texture": 65,
+            "chloasma": 88,
+            "test_date_time": "2021-04-24"
+        },
+        "2021-04-23": {
+            "total_score": 78,
+            "blackhead": 90,
+            "dark_circle": 85,
+            "wrinkle": 93,
+            "pore": 66,
+            "pockmark": 66,
+            "spot": 86,
+            "roughness": 78,
+            "moisture": 75,
+            "texture": 62,
+            "chloasma": 89,
+            "test_date_time": "2021-04-23"
+        },
+        "2021-05-05": {
+            "total_score": 73,
+            "blackhead": 87,
+            "dark_circle": 40,
+            "wrinkle": 93,
+            "pore": 74,
+            "pockmark": 76,
+            "spot": 84,
+            "roughness": 81,
+            "moisture": 70,
+            "texture": 71,
+            "chloasma": 81,
+            "test_date_time": "2021-05-05"
+        },
+        "2021-05-06": {
+            "total_score": 68,
+            "blackhead": 83,
+            "dark_circle": 48,
+            "wrinkle": 93,
+            "pore": 72,
+            "pockmark": 66,
+            "spot": 88,
+            "roughness": 79,
+            "moisture": 68,
+            "texture": 69,
+            "chloasma": 73,
+            "test_date_time": "2021-05-06"
+        }
+    }
+}
+
+//响应失败
+{
+    "code": "400",
+    "message": "get average record fail",
+    "success": false
+}
+```
+
+
+
 # 3.0 Add my today info 添加今日数据
 
 > 请求地址:  http://example:8081/api/today     请求方式:  **POST**
