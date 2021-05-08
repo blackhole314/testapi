@@ -790,7 +790,8 @@
 { 
     "key": "android_1q2w3e4r",
     "type": "normal",
-    "birthday": "2021-03-22"
+    "id":"ddddd",              //当前用户的id
+    "birthday": "2021-03-22"   //所查询的生日日期,根据生日日期
 }
 ```
 
@@ -808,7 +809,7 @@
         "id": null,
         "image_url": null,
         "test_date_time": null,
-        "total_score": null,
+        "total_score": 100,
         "blackhead": 20,
         "dark_circle": 100,
         "wrinkle": 99,
@@ -1001,7 +1002,42 @@
 }
 ```
 
+# 2.91 get average score by same age 获取同年代平均数
 
+> 请求地址:  http://example:8081/api/result/average/age/**{id}**?key=android_1q2w3e4r&type=normal  请求方式: **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功,根据注册时birthday推算年龄,求相同年龄段的测评平均值
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "total_score": 60,           //每个字段都是同年代平均值
+        "blackhead": 20,
+        "dark_circle": 85,
+        "wrinkle": 99,
+        "pore": 33,
+        "pockmark": 63,
+        "spot": 63,
+        "roughness": 99,
+        "moisture": 44,
+        "texture": 99,
+        "chloasma": 89,
+        "test_date_time": null
+    }
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
 
 # 3.0 Add my today info 添加今日数据
 
