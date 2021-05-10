@@ -902,11 +902,13 @@
 }
 ```
 
-# 2.9 Get average score with date 获取日期内测试平均分
+# 2.9 Get recent average 获取近期内测试平均分
 
 > 请求地址:  http://example:8081/api/result/average/**{id}**    请求方式: **GET**
 >
 > 请求示例:  http://example:8081/api/result/average/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 获取近日测肤数据, 以测试记录200条内计算日期
 
 ------
 
@@ -1028,6 +1030,256 @@
         "moisture": 44,
         "texture": 99,
         "chloasma": 89,
+        "test_date_time": null
+    }
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 2.92 Get test date list 获取测试日期列表
+
+> 请求地址:  http://example:8081/api/result/listdate/**{id}**?key=android_1q2w3e4r&type=normal  请求方式:  **GET**
+>
+> 请求示例:  http://example:8081/api/result/listdate/ddddd?key=android_1q2w3e4r&type=normal
+
+------
+
+> 响应体
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [                              //对应id的所有测试日期列表 默认上限600个
+        "2021-05-08",
+        "2021-05-07",
+        "2021-05-06",
+        "2021-05-05",
+        "2021-04-27",
+        "2021-04-24",
+        "2021-04-23",
+        "1982-12-21"
+    ]
+}
+
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 2.93 Get average score by date 获取指定日期内的平均分
+
+> 请求地址:  http://example:8081/api/result/average/date/**{date}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:http://example:8081/api/result/average/date/2021-04-27/kobe?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "total_score": 73,         //指定日期内的平均分
+        "blackhead": 85,
+        "dark_circle": 44,
+        "wrinkle": 93,
+        "pore": 73,
+        "pockmark": 81,
+        "spot": 88,
+        "roughness": 80,
+        "moisture": 71,
+        "texture": 73,
+        "chloasma": 79,
+        "test_date_time": null
+    }
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 2.94 Get records of date 获取指定日期测肤数据
+
+> 请求地址: http://example:8081/api/result/date/**{date}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/result/date/2021-04-27/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式; **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "type": null,
+            "id": "ddddd",
+            "index": 244,
+            "imageUrl": "prd-api3/20210427/7943d7e5d20a8c94e350a1617fe76a22-2251799813746879.jpg",
+            "testDateTime": "2021-04-27 19:59:00",
+            "totalScore": 74,
+            "blackhead": 87,
+            "darkCircle": 36,
+            "wrinkle": 93,
+            "pore": 71,
+            "pockmark": 86,
+            "spot": 91,
+            "roughness": 80,
+            "moisture": 73,
+            "texture": 73,
+            "chloasma": 86,
+            "age": null,
+            "skinApiResult": "......"
+        },
+        {
+            "type": null,
+            "id": "ddddd",
+            "index": 245,
+            "imageUrl": "prd-api3/20210427/3b668999e9b98108d42bf31dc63e1810-2251799813746894.jpg",
+            "testDateTime": "2021-04-27 19:59:00",
+            "totalScore": 74,
+            "blackhead": 83,
+            "darkCircle": 46,
+            "wrinkle": 93,
+            "pore": 74,
+            "pockmark": 79,
+            "spot": 87,
+            "roughness": 80,
+            "moisture": 71,
+            "texture": 73,
+            "chloasma": 84,
+            "age": null,
+            "skinApiResult": "......"
+        },
+        {
+            "type": null,
+            "id": "ddddd",
+            "index": 246,
+            "imageUrl": "prd-api3/20210427/ec8ec01a585946fae075aa26b0123383-2251799813746909.jpg",
+            "testDateTime": "2021-04-27 19:59:00",
+            "totalScore": 72,
+            "blackhead": 88,
+            "darkCircle": 36,
+            "wrinkle": 93,
+            "pore": 72,
+            "pockmark": 82,
+            "spot": 89,
+            "roughness": 81,
+            "moisture": 72,
+            "texture": 73,
+            "chloasma": 81,
+            "age": null,
+            "skinApiResult": "......"
+        },
+        {
+            "type": null,
+            "id": "ddddd",
+            "index": 243,
+            "imageUrl": "prd-api3/20210427/6cf2dbace6e4dd3dd5079e0f96f053c3-2251799813746864.jpg",
+            "testDateTime": "2021-04-27 19:58:00",
+            "totalScore": 71,
+            "blackhead": 85,
+            "darkCircle": 35,
+            "wrinkle": 93,
+            "pore": 77,
+            "pockmark": 79,
+            "spot": 82,
+            "roughness": 82,
+            "moisture": 69,
+            "texture": 72,
+            "chloasma": 68,
+            "age": null,
+            "skinApiResult": "......"
+        },
+        {
+            "type": null,
+            "id": "ddddd",
+            "index": 242,
+            "imageUrl": "prd-api3/20210427/e2dd0048f840bec2b67066de4f8eb8fe-2251799813746849.jpg",
+            "testDateTime": "2021-04-27 19:57:00",
+            "totalScore": 77,
+            "blackhead": 86,
+            "darkCircle": 69,
+            "wrinkle": 93,
+            "pore": 72,
+            "pockmark": 79,
+            "spot": 91,
+            "roughness": 80,
+            "moisture": 73,
+            "texture": 76,
+            "chloasma": 78,
+            "age": null,
+            "skinApiResult": "......"
+        }
+    ]
+}
+
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 2.95 Get records average in a date area 在某个时间区域内求各个记录参数平均值
+
+> 请求地址: http://example:8081/api/result/average/area/**{start}**/**{end}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:http://example:8081/api/result/average/area/2021-04-27/2021-05-08/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式: **GET**
+>
+> start 为开始时间  end 为结束时间   由过去到未来, 如: 2021-04-27/2021-05-08/
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "total_score": 75,     //时间段内内的平均分
+        "blackhead": 78,
+        "dark_circle": 49,
+        "wrinkle": 93,
+        "pore": 77,
+        "pockmark": 70,
+        "spot": 88,
+        "roughness": 83,
+        "moisture": 73,
+        "texture": 74,
+        "chloasma": 80,
         "test_date_time": null
     }
 }
