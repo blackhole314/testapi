@@ -778,7 +778,7 @@
 }
 ```
 
-# 2.6 Get same age scores  获取同年龄段平均数
+# 2.6 Get same age scores  获取生日相同的平均数
 
 > 请求地址:  http://example:8081/api/result/score   请求方式:  **POST**
 
@@ -1291,6 +1291,231 @@
 }
 ```
 
+# 2.96 Get latest record of a date 获取某天中最新的一个测肤记录
+
+> 请求地址: http://exaple:8081/api/result/date/latest/**{date}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/result/date/latest/2021-05-10/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式: **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功  2021-05-10  中的最新记录  
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "type": null,
+        "id": "ddddd",
+        "index": 326,
+        "imageUrl": "prd-api3/20210216/b1f1b30d51e23e4409ea9ae0dbc3ff61-2251799813719383.jpg",
+        "testDateTime": "2021-05-10 18:18:27",
+        "totalScore": 60,
+        "blackhead": 20,
+        "darkCircle": 85,
+        "wrinkle": 99,
+        "pore": 33,
+        "pockmark": 63,
+        "spot": 63,
+        "roughness": 99,
+        "moisture": 44,
+        "texture": 99,
+        "chloasma": 89,
+        "ageRegion": 3,
+        "skinApiResult": null
+    }
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 2.97 Get latest records in a date area 在一个日期区间内获取每日中的最新测肤记录
+
+> 请求地址:  http://example:8081/api/result/date/latest/area/**{start}**/**{end}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/result/date/latest/area/2021-04-27/2021-05-08/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "testDate": "2021-05-08",
+            "index": 318,
+            "id": "ddddd",
+            "imageUrl": "prd-api3/20210216/b1f1b30d51e23e4409ea9ae0dbc3ff61-2251799813719383.jpg",
+            "totalScore": 100,
+            "blackhead": 20,
+            "darkCircle": 100,
+            "wrinkle": 99,
+            "pore": 99,
+            "pockmark": 0,
+            "spot": 99,
+            "roughness": 99,
+            "moisture": 99,
+            "texture": 99,
+            "chloasma": 99,
+            "ageRegion": 3,
+            "testDateTime": "2021-05-08 18:18:27"
+        },
+        {
+            "testDate": "2021-05-07",
+            "index": 311,
+            "id": "ddddd",
+            "imageUrl": "prd-api3/20210507/924a7ea9141254b6ebf03bd5a2e9155c-2251799813748744.jpg",
+            "totalScore": 74,
+            "blackhead": 91,
+            "darkCircle": 39,
+            "wrinkle": 93,
+            "pore": 85,
+            "pockmark": 89,
+            "spot": 85,
+            "roughness": 86,
+            "moisture": 69,
+            "texture": 64,
+            "chloasma": 73,
+            "ageRegion": null,
+            "testDateTime": "2021-05-07 20:11:00"
+        },
+        {
+            "testDate": "2021-05-06",
+            "index": 298,
+            "id": "ddddd",
+            "imageUrl": "prd-api3/20210506/320c4749c1ec84329ece0f6876728512-2251799813748435.jpg",
+            "totalScore": 68,
+            "blackhead": 83,
+            "darkCircle": 48,
+            "wrinkle": 93,
+            "pore": 72,
+            "pockmark": 66,
+            "spot": 88,
+            "roughness": 79,
+            "moisture": 68,
+            "texture": 69,
+            "chloasma": 73,
+            "ageRegion": null,
+            "testDateTime": "2021-05-06 17:35:00"
+        }
+    ]
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 2.98 Get json result by data index and user id 用测肤记录索引index和用户id来获取测肤json结果数据
+
+> 请求地址:  http://example:8081/api/result/json/**{index}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/result/json/316/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": "{\"color\":{\"result\":\"ziran\",\"score\":80,\"mapped_score\":61.560000000000002},\"forehead\":{\"type\":[\"fujiShape\"],\"result\":\"0.499176\"},\"wrinkle\":{\"category\":[{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"forehead\"},{\"score\":90,\"count\":2,\"level\":\"lightly\",\"cls\":\"eyecorner\"},{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"crowfeet\"},{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"glabella\"},{\"score\":75,\"count\":2,\"level\":\"lightly\",\"cls\":\"nasolabial\"}],\"score\":93,\"underlying_score\":[0.038374618217435555,0.007674923643487111,0.042327127978290358,5.3213504404895639e-05,1.330337610122391e-05,2.1961128802020423e-05,0.02],\"mapped_score\":78.640000000000001,\"count\":4,\"level\":\"lightly\",\"mapped_score_exp\":86.209999999999994,\"filename\":\"prd-apiout3\/20210411\/4f5ca71d9527119827896905a1a3dab7-2251799813739021.jpg\"},\"moisture\":{\"result\":\"0.223\",\"filename\":\"prd-apiout3\/20210411\/773b58cc5372dd634c60005b076717d5-2251799813739020.jpg\",\"score\":\"79\",\"class\":[{\"result\":0.123,\"class\":\"left_cheek\"},{\"result\":0.27100000000000002,\"class\":\"right_cheek\"},{\"result\":0.31900000000000001,\"class\":\"forehead\"},{\"result\":0,\"class\":\"chin\"}],\"level\":\"lightly\",\"mapped_score\":65.5},\"code\":0,\"image_detect\":[],\"face_detect\":{\"rects\":[{\"y0\":190,\"x1\":949,\"x0\":83,\"y1\":1400}]},\"texture\":{\"score\":57,\"filename\":\"prd-apiout3\/20210411\/4b6e1c1132bb69094990239a771b9bcb-2251799813739023.jpg\",\"mapped_score\":48.140000000000001},\"sensitive\":{\"filename\":\"prd-apiout3\/20210411\/58ca4323927d3913bf234d7ab2ed4068-2251799813739025.jpg\",\"score\":99,\"type\":\"tolerance\",\"underlying_score\":null,\"mapped_score\":100},\"skin_type\":{\"mapped_score\":57.119999999999997,\"score\":51,\"category\":[{\"cls\":\"forehead\",\"score\":49,\"level\":\"moderately\",\"prob\":3.9871997833251953,\"exp_type\":\"mid\",\"type\":\"mid\",\"oil_score\":68.689999999999998},{\"cls\":\"nose\",\"score\":70,\"level\":\"lightly\",\"prob\":4.926600456237793,\"exp_type\":\"oil\",\"type\":\"oil\",\"oil_score\":94.819999999999993},{\"cls\":\"left_cheek\",\"score\":53,\"level\":\"moderately\",\"prob\":4.1198000907897949,\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"oil_score\":77.430000000000007},{\"cls\":\"right_cheek\",\"score\":55,\"level\":\"moderately\",\"prob\":4.1796998977661133,\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"oil_score\":76.969999999999999},{\"cls\":\"chin\",\"score\":49,\"level\":\"moderately\",\"prob\":3.9965002536773682,\"exp_type\":\"mid\",\"type\":\"mid\",\"oil_score\":71.129999999999995}],\"exp_type_v0\":\"mid_oil\",\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"filename\":\"prd-apiout3\/20210411\/9f3253cce8b73e2d4a1a7a0db0e652d9-2251799813739029.jpg\",\"oil_score\":84.25,\"mix_extended\":\"mid\"},\"pockmark\":{\"category\":[{\"cls\":\"CC_DD\",\"count\":4,\"score\":89},{\"cls\":\"CC_DY\",\"count\":2,\"score\":80}],\"score\":82,\"underlying_score\":{\"CC_DY\":[0.0009545570983453828,0.000553827791489298,0.86178150773048401,0.001115794274902653,0.040000000000000001],\"CC_DD\":[0.003251138339801593,0.0008269049248155102,0.98292386531829834,0.0032882567087025197,0.080000000000000002]},\"mapped_score\":47.789999999999999,\"count\":6,\"level\":\"lightly\",\"filename\":\"prd-apiout3\/20210411\/55be7a6a8fdeea33c370d40bcd7e7e2c-2251799813739018.jpg\"},\"appearance\":{\"score\":75},\"roughness\":{\"score\":94,\"mapped_score\":79.939999999999998,\"level\":\"moderately\"},\"dark_circle\":{\"mapped_score\":68.840000000000003,\"score\":71,\"rightType\":\"XGX\",\"rightLevel\":\"lightly\",\"three_types\":{\"XGX\":{\"level\":\"lightly\",\"score\":68},\"SSX\":{\"level\":\"lightly\",\"score\":69},\"YYX\":{\"level\":\"none\",\"score\":100}},\"level\":\"lightly\",\"leftType\":\"HHX\",\"filename\":\"prd-apiout3\/20210411\/56871327f63e3ca5b898951217d6977c-2251799813739026.jpg\",\"type\":\"HHX\",\"leftLevel\":\"lightly\"},\"defeat_rank\":{\"pockmark\":0.11,\"blackhead\":0.56999999999999995,\"dark_circle\":0.95999999999999996,\"appearance\":0.5,\"pore\":0.84999999999999998,\"texture\":0.01,\"spot\":0.90000000000000002,\"chloasma\":0.76000000000000001,\"skin_type\":0.41999999999999998,\"moisture\":0.44,\"wrinkle\":0.42999999999999999},\"pore\":{\"category\":[{\"score\":100,\"cls\":\"forehead\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"left_cheek\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"right_cheek\",\"count\":0,\"level\":\"none\"}],\"score\":\"100\",\"area\":0,\"mapped_score\":100,\"count\":0,\"level\":\"none\",\"filename\":\"prd-apiout3\/20210411\/a1d8e2048e49d4cf286d0e006b903c43-2251799813739022.jpg\"},\"disease\":{\"niduses\":[{\"boxes\":[{\"coord\":[684,747,865,954],\"scores\":0.40903806686401367}],\"class\":\"CC\"},{\"boxes\":[],\"class\":\"MGJF\"},{\"boxes\":[{\"coord\":[507,837,574,899],\"scores\":0.44814836978912354},{\"coord\":[900,941,930,981],\"scores\":0.35853824019432068}],\"class\":\"PY\"}],\"filename\":\"prd-apiout3\/20210411\/6be8a5db74feed2d4aa4b140eb0308fe-2251799813739028.jpg\",\"result\":\"CC,PY\"},\"face_box\":{\"y0\":139,\"x1\":979,\"x0\":69,\"y1\":1440},\"filename\":\"prd-api3\/20210411\/4db27053fd015624c0b92ed498fd21e7-2251799813739015.jpg\",\"id\":\"26db5e1854606d680862cabbd7248e30\",\"error_detect_types\":34409021440,\"spot\":{\"category\":[{\"score\":100,\"cls\":\"Z_Z\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"B_HHB\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"B_QB\",\"count\":0,\"level\":\"none\"},{\"score\":98,\"cls\":\"B_QTB\",\"count\":1,\"level\":\"lightly\"}],\"score\":99,\"underlying_score\":{\"B_QB\":[0,0,0,0,0],\"B_QTB\":[0.001535022655028666,0.001634414778150366,0.93918794393539429,0.0016344147781503662,0.02],\"Z_Z\":[0,0,0,0,0],\"B_HHB\":[0,0,0,0,0]},\"mapped_score\":79.680000000000007,\"count\":1,\"level\":\"lightly\",\"filename\":\"prd-apiout3\/20210411\/5d4df15deb822c5070ba5edad98f3104-2251799813739017.jpg\"},\"blackhead\":{\"mapped_score\":77.629999999999995,\"score\":\"98\",\"count\":2,\"level\":\"lightly\",\"area\":0.0008891800534911454,\"filename\":\"prd-apiout3\/20210411\/3b7288653efdb42a7804d87eac68bab8-2251799813739024.jpg\"},\"detect_types\":\"192853555199\",\"age\":{\"result\":35},\"emotion\":{\"result\":\"neutral\"},\"features\":{\"wearing_hat\":\"0.00000\",\"pointy_nose\":\"0.00000\",\"heavy_makeup\":\"0.01340\",\"mustache\":\"0.00006\",\"straight_hair\":\"0.00000\",\"wearing_necktie\":\"0.00000\",\"brown_hair\":\"0.00034\",\"no_beard\":\"0.00000\",\"gray_hair\":\"0.00000\",\"arched_eyebrows\":\"0.00000\",\"receding_hairline\":\"0.00000\",\"eyeglasses\":\"0.00000\",\"bushy_eyebrows\":\"0.00000\",\"high_cheekbones\":\"0.03727\",\"double_chin\":\"0.00008\",\"oval_face\":\"0.00000\",\"wavy_hair\":\"0.00424\",\"pale_skin\":\"0.00000\",\"wearing_necklace\":\"0.00000\",\"bangs\":\"0.00000\",\"goatee\":\"0.00002\",\"sideburns\":\"0.00002\",\"blond_hair\":\"0.00000\",\"female\":0.98350614309310913,\"rosy_cheeks\":\"0.00000\",\"bags_under_eyes\":\"0.32717\",\"bald\":\"0.00000\",\"chubby\":\"0.40677\",\"wearing_earrings\":\"0.00000\",\"mouth_slightly_open\":\"0.00000\",\"big_nose\":\"0.00000\",\"attractive\":\"0.07421\",\"blurry\":\"0.00000\",\"male\":1,\"big_lips\":\"0.00000\",\"young\":\"0.00000\",\"5_o_clock_shadow\":\"0.50617\",\"smiling\":\"0.00000\",\"black_hair\":\"0.00000\",\"wearing_lipstick\":\"0.00000\",\"narrow_eyes\":\"0.00000\"},\"acne\":{\"mapped_score\":100,\"filename\":\"prd-apiout3\/20210411\/b249df865c7fbb301b251eba9cd1b1cc-2251799813739019.jpg\",\"level\":\"none\",\"count\":0,\"category\":[],\"underlying_score\":null},\"chloasma\":{\"filename\":\"prd-apiout3\/20210411\/57958da02820d92b7b1274d40934ab54-2251799813739027.jpg\",\"count\":3,\"score\":94,\"mapped_score\":80.209999999999994}}"
+}
+
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 2.99 Get multiple data bye date 根据指定日期获取综合数据,测肤记录/今日记录/健康记录(最新的一条记录)
+
+> 请求地址:  http://example:8081/api/result/multiple/test-today-health/**{date}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/result/multiple/test-today-health/2021-05-10/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式: **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "testData": {               //测肤记录
+            "type": null,
+            "index": 326,
+            "id": "ddddd",
+            "image_url": "prd-api3/20210216/b1f1b30d51e23e4409ea9ae0dbc3ff61-2251799813719383.jpg",
+            "test_date_time": "2021-05-10 18:18:27",
+            "total_score": 60,
+            "blackhead": 20,
+            "dark_circle": 85,
+            "wrinkle": 99,
+            "pore": 33,
+            "pockmark": 63,
+            "spot": 63,
+            "roughness": 99,
+            "moisture": 44,
+            "texture": 99,
+            "chloasma": 89,
+            "skin_api_result": null
+        },
+        "todayData": {          //今日记录
+            "type": null,
+            "index": 96,
+            "id": "ddddd",
+            "record_date": "2021-05-10",
+            "feeling": "最高",
+            "sleep": null,
+            "exercise": null,
+            "appetite": "普通",
+            "water": "1-2L",
+            "defecation": null,
+            "memo": ""
+        },
+        "healthData": null      //生理管理记录
+    }
+}
+//如果3个值都是null, 则返回no data
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+
+
 # 3.0 Add my today info 添加今日数据
 
 > 请求地址:  http://example:8081/api/today     请求方式:  **POST**
@@ -1385,6 +1610,81 @@
 {
     "code": "400",
     "message": "今日のデータがありません",
+    "success": false
+}
+```
+
+# 3.2 Get record date list of today info 获取今日数据的所有记录日期
+
+> 请求地址:  http://example:8081/api/today/listdate/**{id}**?key=ios_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/today/listdate/lzq2006123?key=ios_1q2w3e4r&type=normal
+>
+> 请求方式: **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [               //所有的记录日期, 不重复
+        "2021-03-04",
+        "2021-04-12",
+        "2021-04-14",
+        "2021-04-15",
+        "2021-04-22",
+        "2021-04-27"
+    ]
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 3.3 Get a latest record of today info 根据ID获取今日数据中最新的一条数据
+
+> 请求地址:  http://example:8081/api/today/latest/**{id}**?key=ios_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/today/latest/lzq2006123?key=ios_1q2w3e4r&type=normal
+>
+> 请求方式: **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "type": null,
+        "index": 94,
+        "id": "lzq2006123",
+        "record_date": "2021-04-27",
+        "feeling": "good",
+        "sleep": "6h",
+        "exercise": "10m",
+        "appetite": "normal",
+        "water": "1L",
+        "defecation": "1 time",
+        "memo": "hello"
+    }
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
     "success": false
 }
 ```
