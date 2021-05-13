@@ -923,10 +923,24 @@
     "message": "Success",
     "success": true,
     "body": {
+        "2021-05-08": {
+            "totalScore": 100,      //每日平均分
+            "blackhead": 20,
+            "darkCircle": 100,
+            "wrinkle": 99,
+            "pore": 99,
+            "pockmark": 0,
+            "spot": 99,
+            "roughness": 99,
+            "moisture": 99,
+            "texture": 99,
+            "chloasma": 99,
+            "testDateTime": "2021-05-08"
+        },
         "2021-04-27": {
-            "total_score": 73,             //返回的值 都是当日平均值
+            "totalScore": 73,
             "blackhead": 85,
-            "dark_circle": 44,
+            "darkCircle": 44,
             "wrinkle": 93,
             "pore": 73,
             "pockmark": 81,
@@ -935,12 +949,12 @@
             "moisture": 71,
             "texture": 73,
             "chloasma": 79,
-            "test_date_time": "2021-04-27"
+            "testDateTime": "2021-04-27"
         },
         "2021-04-24": {
-            "total_score": 83,
+            "totalScore": 83,
             "blackhead": 95,
-            "dark_circle": 53,
+            "darkCircle": 53,
             "wrinkle": 93,
             "pore": 88,
             "pockmark": 88,
@@ -949,49 +963,7 @@
             "moisture": 74,
             "texture": 65,
             "chloasma": 88,
-            "test_date_time": "2021-04-24"
-        },
-        "2021-04-23": {
-            "total_score": 78,
-            "blackhead": 90,
-            "dark_circle": 85,
-            "wrinkle": 93,
-            "pore": 66,
-            "pockmark": 66,
-            "spot": 86,
-            "roughness": 78,
-            "moisture": 75,
-            "texture": 62,
-            "chloasma": 89,
-            "test_date_time": "2021-04-23"
-        },
-        "2021-05-05": {
-            "total_score": 73,
-            "blackhead": 87,
-            "dark_circle": 40,
-            "wrinkle": 93,
-            "pore": 74,
-            "pockmark": 76,
-            "spot": 84,
-            "roughness": 81,
-            "moisture": 70,
-            "texture": 71,
-            "chloasma": 81,
-            "test_date_time": "2021-05-05"
-        },
-        "2021-05-06": {
-            "total_score": 68,
-            "blackhead": 83,
-            "dark_circle": 48,
-            "wrinkle": 93,
-            "pore": 72,
-            "pockmark": 66,
-            "spot": 88,
-            "roughness": 79,
-            "moisture": 68,
-            "texture": 69,
-            "chloasma": 73,
-            "test_date_time": "2021-05-06"
+            "testDateTime": "2021-04-24"
         }
     }
 }
@@ -1019,18 +991,18 @@
     "message": "Success",
     "success": true,
     "body": {
-        "total_score": 60,           //每个字段都是同年代平均值
-        "blackhead": 20,
-        "dark_circle": 85,
-        "wrinkle": 99,
-        "pore": 33,
-        "pockmark": 63,
-        "spot": 63,
-        "roughness": 99,
-        "moisture": 44,
-        "texture": 99,
-        "chloasma": 89,
-        "test_date_time": null
+        "totalScore": 77,           //同年代平均值
+        "blackhead": 91,
+        "darkCircle": 71,
+        "wrinkle": 98,
+        "pore": 76,
+        "pockmark": 76,
+        "spot": 90,
+        "roughness": 83,
+        "moisture": 71,
+        "texture": 63,
+        "chloasma": 76,
+        "testDateTime": null
     }
 }
 //响应失败
@@ -1096,9 +1068,9 @@
     "message": "Success",
     "success": true,
     "body": {
-        "total_score": 73,         //指定日期内的平均分
+        "totalScore": 73,
         "blackhead": 85,
-        "dark_circle": 44,
+        "darkCircle": 44,
         "wrinkle": 93,
         "pore": 73,
         "pockmark": 81,
@@ -1107,7 +1079,7 @@
         "moisture": 71,
         "texture": 73,
         "chloasma": 79,
-        "test_date_time": null
+        "testDateTime": null
     }
 }
 //响应失败
@@ -1269,9 +1241,9 @@
     "message": "Success",
     "success": true,
     "body": {
-        "total_score": 75,     //时间段内内的平均分
+        "totalScore": 75,
         "blackhead": 78,
-        "dark_circle": 49,
+        "darkCircle": 49,
         "wrinkle": 93,
         "pore": 77,
         "pockmark": 70,
@@ -1280,7 +1252,7 @@
         "moisture": 73,
         "texture": 74,
         "chloasma": 80,
-        "test_date_time": null
+        "testDateTime": null
     }
 }
 //响应失败
