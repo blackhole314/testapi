@@ -1644,6 +1644,79 @@
 }
 ```
 
+# 3.4 Get latest today data in a date area 在一个日期区间内获取每日中的最新今日记录
+
+> 请求地址:  http://example:8081/api/today/date/latest/area/**{start}**/**{end}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/today/date/latest/area/2021-04-27/2021-05-08/dddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "type": null,
+            "distance": 10,               //距离{start}搜索开始时间 间隔多少天
+            "index": 86,
+            "id": "ddddd",
+            "record_date": "2021-05-07",
+            "feeling": null,
+            "sleep": null,
+            "exercise": null,
+            "appetite": null,
+            "water": null,
+            "defecation": "1回",
+            "memo": ""
+        },
+        {
+            "type": null,
+            "distance": 9,
+            "index": 81,
+            "id": "ddddd",
+            "record_date": "2021-05-06",
+            "feeling": "最高",
+            "sleep": null,
+            "exercise": null,
+            "appetite": "少ない",
+            "water": null,
+            "defecation": null,
+            "memo": ""
+        },
+        {
+            "type": null,
+            "distance": 0,
+            "index": 69,
+            "id": "ddddd",
+            "record_date": "2021-04-27",
+            "feeling": "最高",
+            "sleep": null,
+            "exercise": null,
+            "appetite": null,
+            "water": null,
+            "defecation": null,
+            "memo": ""
+        }
+    ]
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+
+
 # 4.0 Send sms for register 新用户验证注册
 
 > 请求地址:   http://example:8081/api/user/sns/verify    请求方式:  **POST**
