@@ -1049,6 +1049,39 @@
 }
 ```
 
+# 2.921 Get test month list 获取有测肤记录的月份列表
+
+> 请求地址 :   http://example:8081/api/result/listmonth/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        "2021-05",
+        "2021-04",
+        "1982-12"
+    ]
+}
+
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+
+
 # 2.93 Get average score by date 获取指定日期内的平均分
 
 > 请求地址:  http://example:8081/api/result/average/date/**{date}**/**{id}**?key=android_1q2w3e4r&type=normal
@@ -1219,6 +1252,98 @@
     "success": false
 }
 ```
+
+# 2.941 Get latest record of one month 获取指定月份内的最新测肤记录
+
+> 请求地址:  http://example:8081/api/result/month/latest/**{month}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/result/month/latest/2021-05/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "testDate": "2021-05-10",
+            "index": 326,
+            "distance": null,
+            "id": "ddddd",
+            "imageUrl": "prd-api3/20210216/b1f1b30d51e23e4409ea9ae0dbc3ff61-2251799813719383.jpg",
+            "totalScore": 60,
+            "blackhead": 20,
+            "darkCircle": 85,
+            "wrinkle": 99,
+            "pore": 33,
+            "pockmark": 63,
+            "spot": 63,
+            "roughness": 99,
+            "moisture": 44,
+            "texture": 99,
+            "chloasma": 89,
+            "ageRegion": 3,
+            "testDateTime": "2021-05-10 18:18:27"
+        },
+       
+        {
+            "testDate": "2021-05-06",
+            "index": 298,
+            "distance": null,
+            "id": "ddddd",
+            "imageUrl": "prd-api3/20210506/320c4749c1ec84329ece0f6876728512-2251799813748435.jpg",
+            "totalScore": 68,
+            "blackhead": 83,
+            "darkCircle": 48,
+            "wrinkle": 93,
+            "pore": 72,
+            "pockmark": 66,
+            "spot": 88,
+            "roughness": 79,
+            "moisture": 68,
+            "texture": 69,
+            "chloasma": 73,
+            "ageRegion": null,
+            "testDateTime": "2021-05-06 17:35:00"
+        },
+        {
+            "testDate": "2021-05-05",
+            "index": 269,
+            "distance": null,
+            "id": "ddddd",
+            "imageUrl": "prd-api3/20210505/619f7ec464284bda0ead0444da7d13af-2251799813747791.jpg",
+            "totalScore": 73,
+            "blackhead": 87,
+            "darkCircle": 40,
+            "wrinkle": 93,
+            "pore": 74,
+            "pockmark": 76,
+            "spot": 84,
+            "roughness": 81,
+            "moisture": 70,
+            "texture": 71,
+            "chloasma": 81,
+            "ageRegion": null,
+            "testDateTime": "2021-05-05 13:45:00"
+        }
+    ]
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+
 
 # 2.95 Get records average in a date area 在某个时间区域内求各个记录参数平均值
 
@@ -1469,7 +1594,93 @@
 }
 ```
 
+# 2.991 Get multiple data based month 获取指定月份中的测肤数据和today数据和健康数据
 
+> 请求地址:  http://example:8081/api/result/multiple/test-today-health-month/**{month}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/result/multiple/test-today-health-month/2021-05/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应改成
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "testData": {
+                "type": null,
+                "index": 326,
+                "id": "ddddd",
+                "image_url": "prd-api3/20210216/b1f1b30d51e23e4409ea9ae0dbc3ff61-2251799813719383.jpg",
+                "test_date_time": "2021-05-10 18:18:27",
+                "total_score": 60,
+                "blackhead": 20,
+                "dark_circle": 85,
+                "wrinkle": 99,
+                "pore": 33,
+                "pockmark": 63,
+                "spot": 63,
+                "roughness": 99,
+                "moisture": 44,
+                "texture": 99,
+                "chloasma": 89,
+                "skin_api_result": null
+            },
+            "todayData": {
+                "type": null,
+                "distance": null,
+                "index": 96,
+                "id": "ddddd",
+                "record_date": "2021-05-10",
+                "feeling": "最高",
+                "sleep": null,
+                "exercise": null,
+                "appetite": "普通",
+                "water": "1-2L",
+                "defecation": null,
+                "memo": ""
+            },
+            "healthData": null
+        },
+        {
+            "testData": {
+                "type": null,
+                "index": 269,
+                "id": "ddddd",
+                "image_url": "prd-api3/20210505/619f7ec464284bda0ead0444da7d13af-2251799813747791.jpg",
+                "test_date_time": "2021-05-05 13:45:00",
+                "total_score": 73,
+                "blackhead": 87,
+                "dark_circle": 40,
+                "wrinkle": 93,
+                "pore": 74,
+                "pockmark": 76,
+                "spot": 84,
+                "roughness": 81,
+                "moisture": 70,
+                "texture": 71,
+                "chloasma": 81,
+                "skin_api_result": null
+            },
+            "todayData": null,
+            "healthData": null
+        }
+    ]
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
 
 # 3.0 Add my today info 添加今日数据
 
@@ -1626,7 +1837,7 @@
         "type": null,
         "index": 94,
         "id": "lzq2006123",
-        "record_date": "2021-04-27",
+        "recordDate": "2021-04-27",
         "feeling": "good",
         "sleep": "6h",
         "exercise": "10m",
@@ -1668,7 +1879,7 @@
             "distance": 10,               //距离{start}搜索开始时间 间隔多少天
             "index": 86,
             "id": "ddddd",
-            "record_date": "2021-05-07",
+            "recordDate": "2021-05-07",
             "feeling": null,
             "sleep": null,
             "exercise": null,
@@ -1682,7 +1893,7 @@
             "distance": 9,
             "index": 81,
             "id": "ddddd",
-            "record_date": "2021-05-06",
+            "recordDate": "2021-05-06",
             "feeling": "最高",
             "sleep": null,
             "exercise": null,
@@ -1696,7 +1907,7 @@
             "distance": 0,
             "index": 69,
             "id": "ddddd",
-            "record_date": "2021-04-27",
+            "recordDate": "2021-04-27",
             "feeling": "最高",
             "sleep": null,
             "exercise": null,
@@ -1708,6 +1919,106 @@
     ]
 }
 //响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 3.5 Get my record month list of today info 获取今日数据月份列表
+
+> 请求地址:  http://example:8081/api/today/listmonth/**{id}**?key=ios_1q2w3e4r&type=normal
+>
+> 请求方式: **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        "2021-03",        //有记录的月份
+        "2021-04"
+    ]
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 3.6 Get latest today data in a month 获取指定月份内的每日最新数据
+
+> 请求地址:  http://example:8081/api/today/month/latest/**{month}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/today/month/latest/2021-05/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "type": null,
+            "distance": null,
+            "index": 96,
+            "id": "ddddd",
+            "recordDate": "2021-05-10",
+            "feeling": "最高",
+            "sleep": null,
+            "exercise": null,
+            "appetite": "普通",
+            "water": "1-2L",
+            "defecation": null,
+            "memo": ""
+        },
+        {
+            "type": null,
+            "distance": null,
+            "index": 86,
+            "id": "ddddd",
+            "recordDate": "2021-05-07",
+            "feeling": null,
+            "sleep": null,
+            "exercise": null,
+            "appetite": null,
+            "water": null,
+            "defecation": "1回",
+            "memo": ""
+        },
+        {
+            "type": null,
+            "distance": null,
+            "index": 81,
+            "id": "ddddd",
+            "recordDate": "2021-05-06",
+            "feeling": "最高",
+            "sleep": null,
+            "exercise": null,
+            "appetite": "少ない",
+            "water": null,
+            "defecation": null,
+            "memo": ""
+        }
+    ]
+}
+//响应失败:
 {
     "code": "400",
     "message": "no data",
