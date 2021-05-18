@@ -2325,7 +2325,7 @@
     "success": true,
     "body": [
         {
-            "recordDate": "2021-04-08",
+            "testDate": "2021-04-08",
             "index": 4,
             "id": "ddddd",
             "weight": 53.23,            //体重
@@ -2333,7 +2333,7 @@
             "temperature": 36.26        //体温
         },
         {
-            "recordDate": "2021-03-23",
+            "testDate": "2021-03-23",
             "index": 3,
             "id": "ddddd",
             "weight": 49.52,
@@ -2341,7 +2341,7 @@
             "temperature": 36.42
         },
         {
-            "recordDate": "2021-03-17",
+            "testDate": "2021-03-17",
             "index": 2,
             "id": "ddddd",
             "weight": 50.0,
