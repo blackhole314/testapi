@@ -2305,3 +2305,96 @@
 }
 ```
 
+# 5.0 Get basic health in a date area 获取健康基础数据/体温/体脂率/体重
+
+> 请求地址:  http://example:8081/api/health/date/basic-latest/area/**{start}**/**{end}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/health/date/basic-latest/area/2021-03-01/2021-04-08/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "recordDate": "2021-04-08",
+            "index": 4,
+            "id": "ddddd",
+            "weight": 53.23,            //体重
+            "fatRate": 27.0,            //体脂率
+            "temperature": 36.26        //体温
+        },
+        {
+            "recordDate": "2021-03-23",
+            "index": 3,
+            "id": "ddddd",
+            "weight": 49.52,
+            "fatRate": 25.36,
+            "temperature": 36.42
+        },
+        {
+            "recordDate": "2021-03-17",
+            "index": 2,
+            "id": "ddddd",
+            "weight": 50.0,
+            "fatRate": 23.0,
+            "temperature": 37.0
+        }
+    ]
+}
+
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 5.1 Get record date list of health获取有记录的日期列表
+
+> 请求地址:  http://example:8081/api/health/listdate/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/health/listdate/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        "2021-03-12",
+        "2021-03-17",
+        "2021-03-23",
+        "2021-04-08",
+        "2021-04-14",
+        "2021-04-21",
+        "2021-04-28",
+        "2021-05-07",
+        "2021-05-13",
+        "2021-05-17"
+    ]
+}
+//响应失败
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
