@@ -2112,6 +2112,39 @@
 }
 ```
 
+# 4.12 Check user lev 查询更新用户等级(是否充值,是否过期)
+
+> 请求地址: http://example:8081/api/user/check/lev/**{index}**?key=ios_1q2w3e4r&type=twitter
+>
+> 请求示例: http://example:8081/api/user/check/lev/180?key=ios_1q2w3e4r&type=twitter
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "index": 180,
+        "lev": "0"
+    }
+}
+//响应失败
+{
+    "code": "400",
+    "message": "user not exist",
+    "success": false
+}
+```
+
+
+
 # 4.2 Change tel by SNS 短信改手机号
 
 > - **需要**原手机号存在的情况下, 请求地址:http://example:8081/api/user/sns/ctel    请求方式:  **POST**
