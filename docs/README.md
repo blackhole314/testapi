@@ -1066,9 +1066,9 @@
     "message": "Success",
     "success": true,
     "body": [
-        "2021-05",
+        "1982-12",
         "2021-04",
-        "1982-12"
+        "2021-05"
     ]
 }
 
@@ -1681,6 +1681,86 @@
     "success": false
 }
 ```
+
+# 2.992 Get date list with type by month (today/health)根据类型在某月筛选有数据的日期
+
+> 请求地址:  http://example:8081/api/result/multiple/today-health/calendar/**{type}**/**{month}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/result/multiple/today-health/calendar/sleep/2021-04/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//5月份中 今日中的sleep有数据的日期  
+//对应今日的类型有:"feeling","sleep","exercise","appetite","water","defecation","memo"
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "testDate": "2021-05-24",
+            "type": "sleep"
+        },
+        {
+            "testDate": "2021-05-07",
+            "type": "sleep"
+        },
+        {
+            "testDate": "2021-05-06",
+            "type": "sleep"
+        },
+        {
+            "testDate": "2021-05-02",
+            "type": "sleep"
+        },
+        {
+            "testDate": "2021-05-01",
+            "type": "sleep"
+        }
+    ]
+}
+
+//健康类型 筛选示例:/api/result/multiple/today-health/calendar/health/2021-04/ddddd
+//健康响应成功 生理健康只有一个类型  "health"
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "testDate": "2021-04-28",
+            "type": "health"
+        },
+        {
+            "testDate": "2021-04-21",
+            "type": "health"
+        },
+        {
+            "testDate": "2021-04-14",
+            "type": "health"
+        },
+        {
+            "testDate": "2021-04-08",
+            "type": "health"
+        }
+    ]
+}
+
+//没有数据返回空数组
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": []
+}
+```
+
+
 
 # 3.0 Add my today info 添加今日数据
 
@@ -2392,7 +2472,7 @@
 }
 ```
 
-# 5.1 Get record date list of health获取有记录的日期列表
+# 5.1 Get record date list of health获取生理健康有记录的日期列表
 
 > 请求地址:  http://example:8081/api/health/listdate/**{id}**?key=android_1q2w3e4r&type=normal
 >
@@ -2428,6 +2508,676 @@
     "code": "400",
     "message": "no data",
     "success": false
+}
+```
+
+# 5.2 Get record  month list of health获取生理健康有记录的月份列表
+
+> 请求地址:  http://example:8081/api/health/listmonth/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/health/listmonth/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        "2021-03",
+        "2021-04",
+        "2021-05"
+    ]
+}
+//无数据
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 5.3 Add health info 添加生理健康记录
+
+> 请求地址:  http://example:8081/api/health
+>
+> 请求方式: **POST**
+
+------
+
+> 请求体:
+
+```json
+{
+     "key":"android_1q2w3e4r",
+     "type":"normal",
+     "id":"ddddd",                        //必须参数用户id
+     "testDate":"2021-05-24",             //必须参数测试日期
+    "physiological":"0",
+    "normalBleeding":"0",
+    "secretions":"0",
+    "notNormalBleeding":"0",
+    "state":"0",
+    "temperature":36.7,                  //double 体温
+    "temperatureState":"0",
+    "weight":50.69,                      //double 体重
+    "fatRate":25.0,                      //double 体脂率
+    "headache":"0",
+    "backPain":"0",
+    "abdominalPain":"0",
+    "jointPain":"0",
+    "uterusPain":"0",
+    "chestPain":"0",
+    "ovulationTest":"0",                 //对应设置表里面的check字段
+    "pregnancyTest":"0",                 //对应设置表里面的check字段
+    "acyeterion":"0",
+    "medicine":"药 100字",
+    "nutrition":"营养品100字",
+    "doctor":"就诊100字",
+    "sex":"0",
+    "smoking":"0",
+    "drinking":"0",
+    "defecation":"0",
+    "exchange":"0",
+    "note":"记事栏100字"
+}
+
+```
+
+> 响应体:
+
+```json
+//添加成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "index": 11,                //health记录的index
+        "id": "ddddd",              //用户id
+        "physiological": "0",
+        "normalBleeding": "0",
+        "secretions": "0",
+        "notNormalBleeding": "0",
+        "state": "0",
+        "temperature": 36.7,
+        "temperatureState": "0",
+        "weight": 50.69,
+        "fatRate": 25.0,
+        "headache": "0",
+        "backPain": "0",
+        "abdominalPain": "0",
+        "jointPain": "0",
+        "uterusPain": "0",
+        "chestPain": "0",
+        "ovulationTest": "0",
+        "pregnancyTest": "0",
+        "acyeterion": "0",
+        "medicine": "药 100字",
+        "nutrition": "营养品100字",
+        "doctor": "就诊100字",
+        "sex": "0",
+        "smoking": "0",
+        "drinking": "0",
+        "defecation": "0",
+        "exchange": "0",
+        "note": "记事栏100字",
+        "testDate": "2021-05-24"
+    }
+}
+//失败
+{
+    "code": "400",
+    "message": "user not found",
+    "success": false
+}
+```
+
+> 字段说明:
+
+```json
+    //生理0,1,2 多选
+    private String physiological;
+    //正常流血 0,1,2,3 单选
+    private String normalBleeding;
+    //分泌物 0,1,2,3...,16多选
+    private String secretions;
+    //不正常流血0,1单选
+    private String notNormalBleeding;
+    //状态状态 0,1,2,3,4,5单选
+    private String state;
+    //体温 没有数据0.00
+    private Double temperature;
+    //体温状态0,1,2,3,4,5单选
+    private String temperatureState;
+    //体重没有数据0.00
+    private Double weight;
+    //体脂率没有数据则是0
+    private Double fatRate;
+    //头痛0,1,2,3 单选
+    private String headache;
+    //腰痛 0,1,2,3 单选
+    private String backPain;
+    //腹痛0,1,2,3 单选
+    private String abdominalPain;
+    //关节痛0,1,2,3 单选
+    private String jointPain;
+    //子宫痛0,1,2,3 单选
+    private String uterusPain;
+    //胸痛0,1,2,3 单选
+    private String chestPain;
+    //排卵检查0,1,2 单选
+    private String ovulationTest;
+    //孕检0,1,2 单选
+    private String pregnancyTest;
+    //避孕药 0,1,2,3,4 单选
+    private String acyeterion;
+    //药  100单词 可以为空
+    private String medicine;
+    //营养品  100单词 可以为空
+    private String nutrition;
+    //就诊  100单词 可以为空
+    private String doctor;
+    //性生活 0,1,2单选
+    private String sex;
+    //吸烟 0,1,2,3,4 单选
+    private String smoking;
+    //饮酒 0,1,2,3,4 单选
+    private String drinking;
+    //排便 0,1,2,3...,12 多选
+    private String defecation;
+    //交换器接触0,1单选
+    private String exchange;
+    //记事栏  100单词 可以为空
+    private String note;
+    //记录日期 2021-05-18
+    private String testDate;
+```
+
+# 5.4 Get latest health info by id 获取最新的一条生理记录
+
+> 请求地址:  http://example:8081/api/health/latest/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/health/latest/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "index": 11,                //记录索引
+        "id": "ddddd",              //用户id
+        "physiological": "0",
+        "normalBleeding": "0",
+        "secretions": "0",
+        "notNormalBleeding": "0",
+        "state": "0",
+        "temperature": 36.7,
+        "temperatureState": "0",
+        "weight": 50.69,
+        "fatRate": 25.0,
+        "headache": "0",
+        "backPain": "0",
+        "abdominalPain": "0",
+        "jointPain": "0",
+        "uterusPain": "0",
+        "chestPain": "0",
+        "ovulationTest": "0",
+        "pregnancyTest": "0",
+        "acyeterion": "0",
+        "medicine": "药 100字",
+        "nutrition": "营养品100字",
+        "doctor": "就诊100字",
+        "sex": "0",
+        "smoking": "0",
+        "drinking": "0",
+        "defecation": "0",
+        "exchange": "0",
+        "note": "记事栏100字",
+        "testDate": "2021-05-24"
+    }
+}
+//无数据
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 5.5 Get  health info bye date 获取当日生理记录
+
+> 请求地址: http://example:8081/api/health/date/latest/**{date}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/health/date/latest/2021-05-24/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "index": 11,
+        "id": "ddddd",
+        "physiological": "0",
+        "normalBleeding": "0",
+        "secretions": "0",
+        "notNormalBleeding": "0",
+        "state": "0",
+        "temperature": 36.7,
+        "temperatureState": "0",
+        "weight": 50.69,
+        "fatRate": 25.0,
+        "headache": "0",
+        "backPain": "0",
+        "abdominalPain": "0",
+        "jointPain": "0",
+        "uterusPain": "0",
+        "chestPain": "0",
+        "ovulationTest": "0",
+        "pregnancyTest": "0",
+        "acyeterion": "0",
+        "medicine": "药 100字",
+        "nutrition": "营养品100字",
+        "doctor": "就诊100字",
+        "sex": "0",
+        "smoking": "0",
+        "drinking": "0",
+        "defecation": "0",
+        "exchange": "0",
+        "note": "记事栏100字",
+        "testDate": "2021-05-24"
+    }
+}
+```
+
+# 5.6 Get health records by month 获取一个月内的生理记录
+
+> 请求地址:  http://example:8081/api/health/month/latest/**{month}**/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/health/month/latest/2021-05/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "index": 11,
+            "id": "ddddd",
+            "physiological": "0",
+            "normalBleeding": "0",
+            "secretions": "0",
+            "notNormalBleeding": "0",
+            "state": "0",
+            "temperature": 36.7,
+            "temperatureState": "0",
+            "weight": 50.69,
+            "fatRate": 25.0,
+            "headache": "0",
+            "backPain": "0",
+            "abdominalPain": "0",
+            "jointPain": "0",
+            "uterusPain": "0",
+            "chestPain": "0",
+            "ovulationTest": "0",
+            "pregnancyTest": "0",
+            "acyeterion": "0",
+            "medicine": "药 100字",
+            "nutrition": "营养品100字",
+            "doctor": "就诊100字",
+            "sex": "0",
+            "smoking": "0",
+            "drinking": "0",
+            "defecation": "0",
+            "exchange": "0",
+            "note": "记事栏100字",
+            "testDate": "2021-05-24"
+        },
+        {
+            "index": 10,
+            "id": "ddddd",
+            "physiological": "0",
+            "normalBleeding": "0",
+            "secretions": "0",
+            "notNormalBleeding": "0",
+            "state": "0",
+            "temperature": 36.78,
+            "temperatureState": "0",
+            "weight": 54.0,
+            "fatRate": 28.98,
+            "headache": "0",
+            "backPain": "0",
+            "abdominalPain": "0",
+            "jointPain": "0",
+            "uterusPain": "0",
+            "chestPain": "0",
+            "ovulationTest": "0",
+            "pregnancyTest": "0",
+            "acyeterion": "0",
+            "medicine": null,
+            "nutrition": null,
+            "doctor": null,
+            "sex": "0",
+            "smoking": "0",
+            "drinking": "0",
+            "defecation": "0",
+            "exchange": "0",
+            "note": null,
+            "testDate": "2021-05-17"
+        },
+        {
+            "index": 9,
+            "id": "ddddd",
+            "physiological": "0",
+            "normalBleeding": "0",
+            "secretions": "0",
+            "notNormalBleeding": "0",
+            "state": "0",
+            "temperature": 36.29,
+            "temperatureState": "0",
+            "weight": 57.23,
+            "fatRate": 30.12,
+            "headache": "0",
+            "backPain": "0",
+            "abdominalPain": "0",
+            "jointPain": "0",
+            "uterusPain": "0",
+            "chestPain": "0",
+            "ovulationTest": "0",
+            "pregnancyTest": "0",
+            "acyeterion": "0",
+            "medicine": null,
+            "nutrition": null,
+            "doctor": null,
+            "sex": "0",
+            "smoking": "0",
+            "drinking": "0",
+            "defecation": "0",
+            "exchange": "0",
+            "note": null,
+            "testDate": "2021-05-13"
+        },
+        {
+            "index": 8,
+            "id": "ddddd",
+            "physiological": "0",
+            "normalBleeding": "0",
+            "secretions": "0",
+            "notNormalBleeding": "0",
+            "state": "0",
+            "temperature": 36.13,
+            "temperatureState": "0",
+            "weight": 56.25,
+            "fatRate": 29.0,
+            "headache": "0",
+            "backPain": "0",
+            "abdominalPain": "0",
+            "jointPain": "0",
+            "uterusPain": "0",
+            "chestPain": "0",
+            "ovulationTest": "0",
+            "pregnancyTest": "0",
+            "acyeterion": "0",
+            "medicine": null,
+            "nutrition": null,
+            "doctor": null,
+            "sex": "0",
+            "smoking": "0",
+            "drinking": "0",
+            "defecation": "0",
+            "exchange": "0",
+            "note": null,
+            "testDate": "2021-05-07"
+        }
+    ]
+}
+//无数据
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
+}
+```
+
+# 6.0 Add/update setting info 添加/更新设置信息
+
+> 请求地址: http://example:8081/api/setting/health/
+>
+> 请求方式: **POST**
+
+------
+
+> 请求体:
+
+```json
+{
+     "key":"android_1q2w3e4r",
+     "type":"normal",
+     "userIndex":169,                 //用户index
+     "healthSetting":"[{\"key\":\"physiological\",\"name\":\"生理\",\"turn\":\"1\"},{\"key\":\"normalBleeding\",\"name\":\"出血量\",\"turn\":\"0\"},{\"key\":\"secretions\",\"name\":\"おりもの\",\"turn\":\"0\"},{\"key\":\"notNormalBleeding\",\"name\":\"不正出血\",\"turn\":\"0\"},{\"key\":\"state\",\"name\":\"体調\",\"turn\":\"0\"},{\"key\":\"temperature\",\"name\":\"基礎体温\",\"turn\":\"1\"},{\"key\":\"temperatureState\",\"name\":\"体温\",\"turn\":\"0\"},{\"key\":\"weight\",\"name\":\"体重\",\"turn\":\"1\"},{\"key\":\"fatRate\",\"name\":\"体脂肪率\",\"turn\":\"1\"},{\"key\":\"headache\",\"name\":\"頭痛\",\"turn\":\"0\"},{\"key\":\"backPain\",\"name\":\"腰痛\",\"turn\":\"0\"},{\"key\":\"abdominalPain\",\"name\":\"腹痛\",\"turn\":\"0\"},{\"key\":\"jointPain\",\"name\":\"関節痛\",\"turn\":\"0\"},{\"key\":\"uterusPain\",\"name\":\"子宮の痛み\",\"turn\":\"0\"},{\"key\":\"chestPain\",\"name\":\"胸の痛み\",\"turn\":\"0\"},{\"key\":\"check\",\"name\":\"検査\",\"turn\":\"0\"},{\"key\":\"acyeterion\",\"name\":\"ピル\",\"turn\":\"0\"},{\"key\":\"medicine\",\"name\":\"薬\",\"turn\":\"0\"},{\"key\":\"nutrition\",\"name\":\"サプリメント\",\"turn\":\"0\"},{\"key\":\"doctor\",\"name\":\"受診\",\"turn\":\"0\"},{\"key\":\"sex\",\"name\":\"セックス\",\"turn\":\"0\"},{\"key\":\"smoking\",\"name\":\"喫煙\",\"turn\":\"0\"},{\"key\":\"drinking\",\"name\":\"飲酒\",\"turn\":\"0\"},{\"key\":\"defecation\",\"name\":\"お通じ\",\"turn\":\"0\"},{\"key\":\"exchange\",\"name\":\"コンタクト交換\",\"turn\":\"0\"},{\"key\":\"note\",\"name\":\"メモ欄\",\"turn\":\"0\"}]"
+}
+
+```
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "userIndex": 169,
+        "healthSetting": "[{\"key\":\"physiological\",\"name\":\"生理\",\"turn\":\"1\"},{\"key\":\"normalBleeding\",\"name\":\"出血量\",\"turn\":\"0\"},{\"key\":\"secretions\",\"name\":\"おりもの\",\"turn\":\"0\"},{\"key\":\"notNormalBleeding\",\"name\":\"不正出血\",\"turn\":\"0\"},{\"key\":\"state\",\"name\":\"体調\",\"turn\":\"0\"},{\"key\":\"temperature\",\"name\":\"基礎体温\",\"turn\":\"1\"},{\"key\":\"temperatureState\",\"name\":\"体温\",\"turn\":\"0\"},{\"key\":\"weight\",\"name\":\"体重\",\"turn\":\"1\"},{\"key\":\"fatRate\",\"name\":\"体脂肪率\",\"turn\":\"1\"},{\"key\":\"headache\",\"name\":\"頭痛\",\"turn\":\"0\"},{\"key\":\"backPain\",\"name\":\"腰痛\",\"turn\":\"0\"},{\"key\":\"abdominalPain\",\"name\":\"腹痛\",\"turn\":\"0\"},{\"key\":\"jointPain\",\"name\":\"関節痛\",\"turn\":\"0\"},{\"key\":\"uterusPain\",\"name\":\"子宮の痛み\",\"turn\":\"0\"},{\"key\":\"chestPain\",\"name\":\"胸の痛み\",\"turn\":\"0\"},{\"key\":\"check\",\"name\":\"検査\",\"turn\":\"0\"},{\"key\":\"acyeterion\",\"name\":\"ピル\",\"turn\":\"0\"},{\"key\":\"medicine\",\"name\":\"薬\",\"turn\":\"0\"},{\"key\":\"nutrition\",\"name\":\"サプリメント\",\"turn\":\"0\"},{\"key\":\"doctor\",\"name\":\"受診\",\"turn\":\"0\"},{\"key\":\"sex\",\"name\":\"セックス\",\"turn\":\"0\"},{\"key\":\"smoking\",\"name\":\"喫煙\",\"turn\":\"0\"},{\"key\":\"drinking\",\"name\":\"飲酒\",\"turn\":\"0\"},{\"key\":\"defecation\",\"name\":\"お通じ\",\"turn\":\"0\"},{\"key\":\"exchange\",\"name\":\"コンタクト交換\",\"turn\":\"0\"},{\"key\":\"note\",\"name\":\"メモ欄\",\"turn\":\"0\"}]"
+    }
+}
+//响应失败
+{
+    "code": "400",
+    "message": "update fail",
+    "success": false
+}
+```
+
+> 设置JSON格式说明:
+
+```json
+[
+    {
+        "key": "physiological",
+        "name": "生理",
+        "turn": "1"
+    },
+    {
+        "key": "normalBleeding",
+        "name": "出血量",
+        "turn": "0"
+    },
+    {
+        "key": "secretions",
+        "name": "おりもの",
+        "turn": "0"
+    },
+    {
+        "key": "notNormalBleeding",
+        "name": "不正出血",
+        "turn": "0"
+    },
+    {
+        "key": "state",
+        "name": "体調",
+        "turn": "0"
+    },
+    {
+        "key": "temperature",
+        "name": "基礎体温",
+        "turn": "1"
+    },
+    {
+        "key": "temperatureState",
+        "name": "体温",
+        "turn": "0"
+    },
+    {
+        "key": "weight",
+        "name": "体重",
+        "turn": "1"
+    },
+    {
+        "key": "fatRate",
+        "name": "体脂肪率",
+        "turn": "1"
+    },
+    {
+        "key": "headache",
+        "name": "頭痛",
+        "turn": "0"
+    },
+    {
+        "key": "backPain",
+        "name": "腰痛",
+        "turn": "0"
+    },
+    {
+        "key": "abdominalPain",
+        "name": "腹痛",
+        "turn": "0"
+    },
+    {
+        "key": "jointPain",
+        "name": "関節痛",
+        "turn": "0"
+    },
+    {
+        "key": "uterusPain",
+        "name": "子宮の痛み",
+        "turn": "0"
+    },
+    {
+        "key": "chestPain",
+        "name": "胸の痛み",
+        "turn": "0"
+    },
+    {
+        "key": "check",
+        "name": "検査",
+        "turn": "0"
+    },
+    {
+        "key": "acyeterion",
+        "name": "ピル",
+        "turn": "0"
+    },
+    {
+        "key": "medicine",
+        "name": "薬",
+        "turn": "0"
+    },
+    {
+        "key": "nutrition",
+        "name": "サプリメント",
+        "turn": "0"
+    },
+    {
+        "key": "doctor",
+        "name": "受診",
+        "turn": "0"
+    },
+    {
+        "key": "sex",
+        "name": "セックス",
+        "turn": "0"
+    },
+    {
+        "key": "smoking",
+        "name": "喫煙",
+        "turn": "0"
+    },
+    {
+        "key": "drinking",
+        "name": "飲酒",
+        "turn": "0"
+    },
+    {
+        "key": "defecation",
+        "name": "お通じ",
+        "turn": "0"
+    },
+    {
+        "key": "exchange",
+        "name": "コンタクト交換",
+        "turn": "0"
+    },
+    {
+        "key": "note",
+        "name": "メモ欄",
+        "turn": "0"
+    }
+]
+```
+
+# 6.1 Get health setting by user index 根据用户索引获得设置信息
+
+> 请求地址: http://example:8081/api/setting/health/**{userIndex}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://example:8081/api/setting/health/169?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+//获取数据响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": {
+        "userIndex": 169,
+        "healthSetting": "[{\"key\":\"physiological\",\"name\":\"生理\",\"turn\":\"1\"},{\"key\":\"normalBleeding\",\"name\":\"出血量\",\"turn\":\"0\"},{\"key\":\"secretions\",\"name\":\"おりもの\",\"turn\":\"0\"},{\"key\":\"notNormalBleeding\",\"name\":\"不正出血\",\"turn\":\"0\"},{\"key\":\"state\",\"name\":\"体調\",\"turn\":\"0\"},{\"key\":\"temperature\",\"name\":\"基礎体温\",\"turn\":\"1\"},{\"key\":\"temperatureState\",\"name\":\"体温\",\"turn\":\"0\"},{\"key\":\"weight\",\"name\":\"体重\",\"turn\":\"1\"},{\"key\":\"fatRate\",\"name\":\"体脂肪率\",\"turn\":\"1\"},{\"key\":\"headache\",\"name\":\"頭痛\",\"turn\":\"0\"},{\"key\":\"backPain\",\"name\":\"腰痛\",\"turn\":\"0\"},{\"key\":\"abdominalPain\",\"name\":\"腹痛\",\"turn\":\"0\"},{\"key\":\"jointPain\",\"name\":\"関節痛\",\"turn\":\"0\"},{\"key\":\"uterusPain\",\"name\":\"子宮の痛み\",\"turn\":\"0\"},{\"key\":\"chestPain\",\"name\":\"胸の痛み\",\"turn\":\"0\"},{\"key\":\"check\",\"name\":\"検査\",\"turn\":\"0\"},{\"key\":\"acyeterion\",\"name\":\"ピル\",\"turn\":\"0\"},{\"key\":\"medicine\",\"name\":\"薬\",\"turn\":\"0\"},{\"key\":\"nutrition\",\"name\":\"サプリメント\",\"turn\":\"0\"},{\"key\":\"doctor\",\"name\":\"受診\",\"turn\":\"0\"},{\"key\":\"sex\",\"name\":\"セックス\",\"turn\":\"0\"},{\"key\":\"smoking\",\"name\":\"喫煙\",\"turn\":\"0\"},{\"key\":\"drinking\",\"name\":\"飲酒\",\"turn\":\"0\"},{\"key\":\"defecation\",\"name\":\"お通じ\",\"turn\":\"0\"},{\"key\":\"exchange\",\"name\":\"コンタクト交換\",\"turn\":\"0\"},{\"key\":\"note\",\"name\":\"メモ欄\",\"turn\":\"0\"}]"
+    }
+}
+//没有数据返回默认设置
+{
+    "code": "400",
+    "message": "no setting data",
+    "success": true,
+    "body": {
+        "userIndex": 1699,
+        "healthSetting": "[{\"key\":\"physiological\",\"name\":\"生理\",\"turn\":\"1\"},{\"key\":\"normalBleeding\",\"name\":\"出血量\",\"turn\":\"0\"},{\"key\":\"secretions\",\"name\":\"おりもの\",\"turn\":\"0\"},{\"key\":\"notNormalBleeding\",\"name\":\"不正出血\",\"turn\":\"0\"},{\"key\":\"state\",\"name\":\"体調\",\"turn\":\"0\"},{\"key\":\"temperature\",\"name\":\"基礎体温\",\"turn\":\"1\"},{\"key\":\"temperatureState\",\"name\":\"体温\",\"turn\":\"0\"},{\"key\":\"weight\",\"name\":\"体重\",\"turn\":\"1\"},{\"key\":\"fatRate\",\"name\":\"体脂肪率\",\"turn\":\"1\"},{\"key\":\"headache\",\"name\":\"頭痛\",\"turn\":\"0\"},{\"key\":\"backPain\",\"name\":\"腰痛\",\"turn\":\"0\"},{\"key\":\"abdominalPain\",\"name\":\"腹痛\",\"turn\":\"0\"},{\"key\":\"jointPain\",\"name\":\"関節痛\",\"turn\":\"0\"},{\"key\":\"uterusPain\",\"name\":\"子宮の痛み\",\"turn\":\"0\"},{\"key\":\"chestPain\",\"name\":\"胸の痛み\",\"turn\":\"0\"},{\"key\":\"check\",\"name\":\"検査\",\"turn\":\"0\"},{\"key\":\"acyeterion\",\"name\":\"ピル\",\"turn\":\"0\"},{\"key\":\"medicine\",\"name\":\"薬\",\"turn\":\"0\"},{\"key\":\"nutrition\",\"name\":\"サプリメント\",\"turn\":\"0\"},{\"key\":\"doctor\",\"name\":\"受診\",\"turn\":\"0\"},{\"key\":\"sex\",\"name\":\"セックス\",\"turn\":\"0\"},{\"key\":\"smoking\",\"name\":\"喫煙\",\"turn\":\"0\"},{\"key\":\"drinking\",\"name\":\"飲酒\",\"turn\":\"0\"},{\"key\":\"defecation\",\"name\":\"お通じ\",\"turn\":\"0\"},{\"key\":\"exchange\",\"name\":\"コンタクト交換\",\"turn\":\"0\"},{\"key\":\"note\",\"name\":\"メモ欄\",\"turn\":\"0\"}]"
+    }
 }
 ```
 
