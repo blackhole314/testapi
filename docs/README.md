@@ -3125,7 +3125,9 @@
     "code": "200",
     "message": "Success",
     "success": true,
-    "body": 21         //0没有数据  大于0则是有多少条数据
+    "body": {
+        "count": 21           //0没有数据  大于0则是有多少条数据
+    }
 }
 ```
 
