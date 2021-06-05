@@ -1583,7 +1583,38 @@
             "defecation": null,
             "memo": ""
         },
-        "healthData": null      //生理管理记录
+        "healthData": {                 //生理管理记录
+            "index": 14,
+            "id": "ddddd",
+            "physiological": "0",
+            "normalBleeding": "0",
+            "secretions": "0",
+            "notNormalBleeding": "0",
+            "state": "0",
+            "temperature": 36.7,
+            "temperatureState": "0",
+            "weight": 50.69,
+            "fatRate": 25.0,
+            "headache": "0",
+            "backPain": "0",
+            "abdominalPain": "0",
+            "jointPain": "0",
+            "uterusPain": "0",
+            "chestPain": "0",
+            "ovulationTest": "0",
+            "pregnancyTest": "0",
+            "acyeterion": "0",
+            "medicine": "药 100字",
+            "nutrition": "营养品100字",
+            "doctor": "就诊100字",
+            "sex": "0",
+            "smoking": "0",
+            "drinking": "0",
+            "defecation": "0",
+            "exchange": "0",
+            "note": "记事栏100字",
+            "testDate": "2021-05-10"
+        }      
     }
 }
 //如果3个值都是null, 则返回no data
@@ -1682,11 +1713,13 @@
 }
 ```
 
-# 2.992 Get date list with type by month (today/health)根据类型在某月筛选有数据的日期
+# 2.992 Get calendar type by month (today/health)根据类型在某月筛选有数据的日期U07日历
 
 > 请求地址:  http://example:8081/api/result/multiple/today-health/calendar/**{type}**/**{month}**/**{id}**?key=android_1q2w3e4r&type=normal
 >
-> 请求示例: http://example:8081/api/result/multiple/today-health/calendar/sleep/2021-04/ddddd?key=android_1q2w3e4r&type=normal
+> 今日请求示例: http://example:8081/api/result/multiple/today-health/calendar/sleep/2021-04/ddddd?key=android_1q2w3e4r&type=normal
+>
+> 健康请求示例: http://example:8081/api/result/multiple/today-health/calendar/health/2021-04/ddddd?key=android_1q2w3e4r&type=normal
 >
 > 请求方式:  **GET**
 
@@ -1697,35 +1730,26 @@
 ```json
 //5月份中 今日中的sleep有数据的日期  
 //对应今日的类型有:"feeling","sleep","exercise","appetite","water","defecation","memo"
+//健康类型为 "health"
 {
     "code": "200",
     "message": "Success",
     "success": true,
     "body": [
         {
-            "testDate": "2021-05-24",
-            "type": "sleep"
+            "testDate": "2021-06-19",
+            "type": "sleep",
+            "physiological": null            //今日类型数据 则生理为空
         },
         {
-            "testDate": "2021-05-07",
-            "type": "sleep"
-        },
-        {
-            "testDate": "2021-05-06",
-            "type": "sleep"
-        },
-        {
-            "testDate": "2021-05-02",
-            "type": "sleep"
-        },
-        {
-            "testDate": "2021-05-01",
-            "type": "sleep"
+            "testDate": "2021-06-01",
+            "type": "sleep",
+            "physiological": null
         }
     ]
 }
 
-//健康类型 筛选示例:/api/result/multiple/today-health/calendar/health/2021-04/ddddd
+//健康类型 筛选示例:/api/result/multiple/today-health/calendar/health/2021-06/gigi
 //健康响应成功 生理健康只有一个类型  "health"
 {
     "code": "200",
@@ -1733,25 +1757,101 @@
     "success": true,
     "body": [
         {
-            "testDate": "2021-04-28",
-            "type": "health"
+            "testDate": "2021-06-17",
+            "type": "health",
+            "physiological": "1"         //1开始生理   2结束生理    3生理中
         },
         {
-            "testDate": "2021-04-21",
-            "type": "health"
+            "testDate": "2021-06-03",
+            "type": "health",
+            "physiological": "2"
         },
         {
-            "testDate": "2021-04-14",
-            "type": "health"
-        },
-        {
-            "testDate": "2021-04-08",
-            "type": "health"
+            "testDate": "2021-06-02",
+            "type": "health",
+            "physiological": "2"
         }
     ]
 }
 
 //没有数据返回空数组
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": []
+}
+```
+
+# 2.993 Get filter multiple data (U05过滤接口)
+
+> 请求地址:http://example:8081/api/result/multiple/test-today-health-filter/**{id}**?startDate=2021-05-10&endDate=2021-05-11&key=android_1q2w3e4r&type=normal&feeling=3&startScore=10&endScore=90&scoreType=total_score&physiological=1
+>
+> 请求示例:http://example:8081/api/result/multiple/test-today-health-filter/gigi?startDate=2021-05-10&endDate=2021-05-11&key=android_1q2w3e4r&type=normal&feeling=3&startScore=10&endScore=90&scoreType=total_score&physiological=1
+>
+> 请求方式: **GET**
+
+------
+
+> 请求参数说明:
+
+```json
+//sort=asc 和 sort=desc 升序或者降序
+/.../{id}?sort=asc
+
+//startDate  和  endDate  开始结束日期  可以单个出现  可以成对出现
+/.../{id}?startDate=2021-05-10&endDate=2021-05-11
+
+
+//今日信息 可选参数有 "feeling", "sleep", "exercise", "appetite", "water", "defecation", "memo"
+/.../{id}?feeling=3
+
+//生理参数physiological的值非空即可   结果会返回1,2,3这3个数字中的一个1代表开始生理2代表结束生理 3代表生理中 
+/.../{id}?physiological=1
+
+//开始分数 和结束分数  "startScore", "endScore", "scoreType"  如果存在开始或者结束分数中的一个,那么scoreType分数类型必须存在, 分数类型如scoreType=total_score  分数类型的值有:total_score/blackhead/dark_circle/wrinkle/pore/pockmark/spot/roughness/moisture/texture/chloasma
+/../{id}?startScore=20&scoreType=total_score
+
+```
+
+> 响应体:
+
+```json
+//有数据
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "index": 340,
+            "id": "gigi",
+            "imageUrl": "prd-api3/20210216/b1f1b30d51e23e4409ea9ae0dbc3ff61-2251799813719383.jpg",
+            "totalScore": 60,
+            "blackhead": 20,
+            "darkCircle": 85,
+            "wrinkle": 99,
+            "pore": 33,
+            "pockmark": 63,
+            "spot": 63,
+            "roughness": 99,
+            "moisture": 44,
+            "texture": 99,
+            "chloasma": 89,
+            "skinApiResult": "{\"color\":{\"result\":\"ziran\",\"score\":80,\"mapped_score\":61.560000000000002},\"forehead\":{\"type\":[\"fujiShape\"],\"result\":\"0.499176\"},\"wrinkle\":{\"category\":[{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"forehead\"},{\"score\":90,\"count\":2,\"level\":\"lightly\",\"cls\":\"eyecorner\"},{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"crowfeet\"},{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"glabella\"},{\"score\":75,\"count\":2,\"level\":\"lightly\",\"cls\":\"nasolabial\"}],\"score\":93,\"underlying_score\":[0.038374618217435555,0.007674923643487111,0.042327127978290358,5.3213504404895639e-05,1.330337610122391e-05,2.1961128802020423e-05,0.02],\"mapped_score\":78.640000000000001,\"count\":4,\"level\":\"lightly\",\"mapped_score_exp\":86.209999999999994,\"filename\":\"prd-apiout3\/20210411\/4f5ca71d9527119827896905a1a3dab7-2251799813739021.jpg\"},\"moisture\":{\"result\":\"0.223\",\"filename\":\"prd-apiout3\/20210411\/773b58cc5372dd634c60005b076717d5-2251799813739020.jpg\",\"score\":\"79\",\"class\":[{\"result\":0.123,\"class\":\"left_cheek\"},{\"result\":0.27100000000000002,\"class\":\"right_cheek\"},{\"result\":0.31900000000000001,\"class\":\"forehead\"},{\"result\":0,\"class\":\"chin\"}],\"level\":\"lightly\",\"mapped_score\":65.5},\"code\":0,\"image_detect\":[],\"face_detect\":{\"rects\":[{\"y0\":190,\"x1\":949,\"x0\":83,\"y1\":1400}]},\"texture\":{\"score\":57,\"filename\":\"prd-apiout3\/20210411\/4b6e1c1132bb69094990239a771b9bcb-2251799813739023.jpg\",\"mapped_score\":48.140000000000001},\"sensitive\":{\"filename\":\"prd-apiout3\/20210411\/58ca4323927d3913bf234d7ab2ed4068-2251799813739025.jpg\",\"score\":99,\"type\":\"tolerance\",\"underlying_score\":null,\"mapped_score\":100},\"skin_type\":{\"mapped_score\":57.119999999999997,\"score\":51,\"category\":[{\"cls\":\"forehead\",\"score\":49,\"level\":\"moderately\",\"prob\":3.9871997833251953,\"exp_type\":\"mid\",\"type\":\"mid\",\"oil_score\":68.689999999999998},{\"cls\":\"nose\",\"score\":70,\"level\":\"lightly\",\"prob\":4.926600456237793,\"exp_type\":\"oil\",\"type\":\"oil\",\"oil_score\":94.819999999999993},{\"cls\":\"left_cheek\",\"score\":53,\"level\":\"moderately\",\"prob\":4.1198000907897949,\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"oil_score\":77.430000000000007},{\"cls\":\"right_cheek\",\"score\":55,\"level\":\"moderately\",\"prob\":4.1796998977661133,\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"oil_score\":76.969999999999999},{\"cls\":\"chin\",\"score\":49,\"level\":\"moderately\",\"prob\":3.9965002536773682,\"exp_type\":\"mid\",\"type\":\"mid\",\"oil_score\":71.129999999999995}],\"exp_type_v0\":\"mid_oil\",\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"filename\":\"prd-apiout3\/20210411\/9f3253cce8b73e2d4a1a7a0db0e652d9-2251799813739029.jpg\",\"oil_score\":84.25,\"mix_extended\":\"mid\"},\"pockmark\":{\"category\":[{\"cls\":\"CC_DD\",\"count\":4,\"score\":89},{\"cls\":\"CC_DY\",\"count\":2,\"score\":80}],\"score\":82,\"underlying_score\":{\"CC_DY\":[0.0009545570983453828,0.000553827791489298,0.86178150773048401,0.001115794274902653,0.040000000000000001],\"CC_DD\":[0.003251138339801593,0.0008269049248155102,0.98292386531829834,0.0032882567087025197,0.080000000000000002]},\"mapped_score\":47.789999999999999,\"count\":6,\"level\":\"lightly\",\"filename\":\"prd-apiout3\/20210411\/55be7a6a8fdeea33c370d40bcd7e7e2c-2251799813739018.jpg\"},\"appearance\":{\"score\":75},\"roughness\":{\"score\":94,\"mapped_score\":79.939999999999998,\"level\":\"moderately\"},\"dark_circle\":{\"mapped_score\":68.840000000000003,\"score\":71,\"rightType\":\"XGX\",\"rightLevel\":\"lightly\",\"three_types\":{\"XGX\":{\"level\":\"lightly\",\"score\":68},\"SSX\":{\"level\":\"lightly\",\"score\":69},\"YYX\":{\"level\":\"none\",\"score\":100}},\"level\":\"lightly\",\"leftType\":\"HHX\",\"filename\":\"prd-apiout3\/20210411\/56871327f63e3ca5b898951217d6977c-2251799813739026.jpg\",\"type\":\"HHX\",\"leftLevel\":\"lightly\"},\"defeat_rank\":{\"pockmark\":0.11,\"blackhead\":0.56999999999999995,\"dark_circle\":0.95999999999999996,\"appearance\":0.5,\"pore\":0.84999999999999998,\"texture\":0.01,\"spot\":0.90000000000000002,\"chloasma\":0.76000000000000001,\"skin_type\":0.41999999999999998,\"moisture\":0.44,\"wrinkle\":0.42999999999999999},\"pore\":{\"category\":[{\"score\":100,\"cls\":\"forehead\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"left_cheek\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"right_cheek\",\"count\":0,\"level\":\"none\"}],\"score\":\"100\",\"area\":0,\"mapped_score\":100,\"count\":0,\"level\":\"none\",\"filename\":\"prd-apiout3\/20210411\/a1d8e2048e49d4cf286d0e006b903c43-2251799813739022.jpg\"},\"disease\":{\"niduses\":[{\"boxes\":[{\"coord\":[684,747,865,954],\"scores\":0.40903806686401367}],\"class\":\"CC\"},{\"boxes\":[],\"class\":\"MGJF\"},{\"boxes\":[{\"coord\":[507,837,574,899],\"scores\":0.44814836978912354},{\"coord\":[900,941,930,981],\"scores\":0.35853824019432068}],\"class\":\"PY\"}],\"filename\":\"prd-apiout3\/20210411\/6be8a5db74feed2d4aa4b140eb0308fe-2251799813739028.jpg\",\"result\":\"CC,PY\"},\"face_box\":{\"y0\":139,\"x1\":979,\"x0\":69,\"y1\":1440},\"filename\":\"prd-api3\/20210411\/4db27053fd015624c0b92ed498fd21e7-2251799813739015.jpg\",\"id\":\"26db5e1854606d680862cabbd7248e30\",\"error_detect_types\":34409021440,\"spot\":{\"category\":[{\"score\":100,\"cls\":\"Z_Z\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"B_HHB\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"B_QB\",\"count\":0,\"level\":\"none\"},{\"score\":98,\"cls\":\"B_QTB\",\"count\":1,\"level\":\"lightly\"}],\"score\":99,\"underlying_score\":{\"B_QB\":[0,0,0,0,0],\"B_QTB\":[0.001535022655028666,0.001634414778150366,0.93918794393539429,0.0016344147781503662,0.02],\"Z_Z\":[0,0,0,0,0],\"B_HHB\":[0,0,0,0,0]},\"mapped_score\":79.680000000000007,\"count\":1,\"level\":\"lightly\",\"filename\":\"prd-apiout3\/20210411\/5d4df15deb822c5070ba5edad98f3104-2251799813739017.jpg\"},\"blackhead\":{\"mapped_score\":77.629999999999995,\"score\":\"98\",\"count\":2,\"level\":\"lightly\",\"area\":0.0008891800534911454,\"filename\":\"prd-apiout3\/20210411\/3b7288653efdb42a7804d87eac68bab8-2251799813739024.jpg\"},\"detect_types\":\"192853555199\",\"age\":{\"result\":35},\"emotion\":{\"result\":\"neutral\"},\"features\":{\"wearing_hat\":\"0.00000\",\"pointy_nose\":\"0.00000\",\"heavy_makeup\":\"0.01340\",\"mustache\":\"0.00006\",\"straight_hair\":\"0.00000\",\"wearing_necktie\":\"0.00000\",\"brown_hair\":\"0.00034\",\"no_beard\":\"0.00000\",\"gray_hair\":\"0.00000\",\"arched_eyebrows\":\"0.00000\",\"receding_hairline\":\"0.00000\",\"eyeglasses\":\"0.00000\",\"bushy_eyebrows\":\"0.00000\",\"high_cheekbones\":\"0.03727\",\"double_chin\":\"0.00008\",\"oval_face\":\"0.00000\",\"wavy_hair\":\"0.00424\",\"pale_skin\":\"0.00000\",\"wearing_necklace\":\"0.00000\",\"bangs\":\"0.00000\",\"goatee\":\"0.00002\",\"sideburns\":\"0.00002\",\"blond_hair\":\"0.00000\",\"female\":0.98350614309310913,\"rosy_cheeks\":\"0.00000\",\"bags_under_eyes\":\"0.32717\",\"bald\":\"0.00000\",\"chubby\":\"0.40677\",\"wearing_earrings\":\"0.00000\",\"mouth_slightly_open\":\"0.00000\",\"big_nose\":\"0.00000\",\"attractive\":\"0.07421\",\"blurry\":\"0.00000\",\"male\":1,\"big_lips\":\"0.00000\",\"young\":\"0.00000\",\"5_o_clock_shadow\":\"0.50617\",\"smiling\":\"0.00000\",\"black_hair\":\"0.00000\",\"wearing_lipstick\":\"0.00000\",\"narrow_eyes\":\"0.00000\"},\"acne\":{\"mapped_score\":100,\"filename\":\"prd-apiout3\/20210411\/b249df865c7fbb301b251eba9cd1b1cc-2251799813739019.jpg\",\"level\":\"none\",\"count\":0,\"category\":[],\"underlying_score\":null},\"chloasma\":{\"filename\":\"prd-apiout3\/20210411\/57958da02820d92b7b1274d40934ab54-2251799813739027.jpg\",\"count\":3,\"score\":94,\"mapped_score\":80.209999999999994}}",
+            "testDateTime": "2021-05-10 19:18:27",
+            "feeling": "3",
+            "sleep": "3",
+            "exercise": "3",
+            "appetite": "3",
+            "water": "2",
+            "defecation": "2",
+            "memo": "",
+            "physiological": "2"   //生理1开始  2 结束  3生理中
+        }
+    ]
+}
+//没有数据
 {
     "code": "200",
     "message": "Success",
@@ -2418,11 +2518,11 @@
 }
 ```
 
-# 5.0 Get basic health in a date area 获取健康基础数据/体温/体脂率/体重
+# 5.0 Get health in a date area 获取健康数据
 
-> 请求地址:  http://example:8081/api/health/date/basic-latest/area/**{start}**/**{end}**/**{id}**?key=android_1q2w3e4r&type=normal
+> 请求地址:  http://example:8081/api/health/date/latest/area/**{start}**/**{end}**/**{id}**?key=android_1q2w3e4r&type=normal
 >
-> 请求示例: http://example:8081/api/health/date/basic-latest/area/2021-03-01/2021-04-08/ddddd?key=android_1q2w3e4r&type=normal
+> 请求示例: http://example:8081/api/health/date/atest/area/2021-03-01/2021-04-08/ddddd?key=android_1q2w3e4r&type=normal
 >
 > 请求方式:  **GET**
 
@@ -2438,28 +2538,68 @@
     "success": true,
     "body": [
         {
-            "testDate": "2021-04-08",
             "index": 4,
             "id": "ddddd",
-            "weight": 53.23,            //体重
-            "fatRate": 27.0,            //体脂率
-            "temperature": 36.26        //体温
+            "physiological": "0",
+            "normalBleeding": "0",
+            "secretions": "0",
+            "notNormalBleeding": "0",
+            "state": "0",
+            "temperature": 36.26,
+            "temperatureState": "0",
+            "weight": 53.23,
+            "fatRate": 27.0,
+            "headache": "0",
+            "backPain": "0",
+            "abdominalPain": "0",
+            "jointPain": "0",
+            "uterusPain": "0",
+            "chestPain": "0",
+            "ovulationTest": "0",
+            "pregnancyTest": "0",
+            "acyeterion": "0",
+            "medicine": null,
+            "nutrition": null,
+            "doctor": null,
+            "sex": "0",
+            "smoking": "0",
+            "drinking": "0",
+            "defecation": "0",
+            "exchange": "0",
+            "note": null,
+            "testDate": "2021-04-08"
         },
         {
-            "testDate": "2021-03-23",
             "index": 3,
             "id": "ddddd",
+            "physiological": "0",
+            "normalBleeding": "0",
+            "secretions": "0",
+            "notNormalBleeding": "0",
+            "state": "0",
+            "temperature": 36.42,
+            "temperatureState": "0",
             "weight": 49.52,
             "fatRate": 25.36,
-            "temperature": 36.42
-        },
-        {
-            "testDate": "2021-03-17",
-            "index": 2,
-            "id": "ddddd",
-            "weight": 50.0,
-            "fatRate": 23.0,
-            "temperature": 37.0
+            "headache": "0",
+            "backPain": "0",
+            "abdominalPain": "0",
+            "jointPain": "0",
+            "uterusPain": "0",
+            "chestPain": "0",
+            "ovulationTest": "0",
+            "pregnancyTest": "0",
+            "acyeterion": "0",
+            "medicine": null,
+            "nutrition": null,
+            "doctor": null,
+            "sex": "0",
+            "smoking": "0",
+            "drinking": "0",
+            "defecation": "0",
+            "exchange": "0",
+            "note": null,
+            "testDate": "2021-03-23"
         }
     ]
 }
@@ -2967,6 +3107,29 @@
     "success": false
 }
 ```
+
+# 5.7 Get record count of health
+
+> 请求地址: http://example:8081/api/health/count/**{id}**?key=android_1q2w3e4r&type=normal
+>
+> 请求示例:  http://localhost:8081/api/health/count/gigi?key=android_1q2w3e4r&type=normal
+>
+> 请求方式:  **GET**
+
+------
+
+> 响应体:
+
+```json
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": 21         //0没有数据  大于0则是有多少条数据
+}
+```
+
+
 
 # 6.0 Add/update setting info 添加/更新设置信息
 
