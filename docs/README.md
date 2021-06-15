@@ -1645,71 +1645,39 @@
     "success": true,
     "body": [
         {
-            "testData": {
-                "type": null,
-                "index": 326,
-                "id": "ddddd",
-                "image_url": "prd-api3/20210216/b1f1b30d51e23e4409ea9ae0dbc3ff61-2251799813719383.jpg",
-                "test_date_time": "2021-05-10 18:18:27",
-                "total_score": 60,
-                "blackhead": 20,
-                "dark_circle": 85,
-                "wrinkle": 99,
-                "pore": 33,
-                "pockmark": 63,
-                "spot": 63,
-                "roughness": 99,
-                "moisture": 44,
-                "texture": 99,
-                "chloasma": 89,
-                "skin_api_result": null
-            },
-            "todayData": {
-                "type": null,
-                "distance": null,
-                "index": 96,
-                "id": "ddddd",
-                "record_date": "2021-05-10",
-                "feeling": "最高",
-                "sleep": null,
-                "exercise": null,
-                "appetite": "普通",
-                "water": "1-2L",
-                "defecation": null,
-                "memo": ""
-            },
-            "healthData": null
-        },
-        {
-            "testData": {
-                "type": null,
-                "index": 269,
-                "id": "ddddd",
-                "image_url": "prd-api3/20210505/619f7ec464284bda0ead0444da7d13af-2251799813747791.jpg",
-                "test_date_time": "2021-05-05 13:45:00",
-                "total_score": 73,
-                "blackhead": 87,
-                "dark_circle": 40,
-                "wrinkle": 93,
-                "pore": 74,
-                "pockmark": 76,
-                "spot": 84,
-                "roughness": 81,
-                "moisture": 70,
-                "texture": 71,
-                "chloasma": 81,
-                "skin_api_result": null
-            },
-            "todayData": null,
-            "healthData": null
+            "index": 340,
+            "id": "gigi",
+            "imageUrl": "prd-api3/20210216/b1f1b30d51e23e4409ea9ae0dbc3ff61-2251799813719383.jpg",
+            "totalScore": 60,
+            "blackhead": 20,
+            "darkCircle": 85,
+            "wrinkle": 99,
+            "pore": 33,
+            "pockmark": 63,
+            "spot": 63,
+            "roughness": 99,
+            "moisture": 44,
+            "texture": 99,
+            "chloasma": 89,
+            "skinApiResult": "{\"color\":{\"result\":\"ziran\",\"score\":80,\"mapped_score\":61.560000000000002},\"forehead\":{\"type\":[\"fujiShape\"],\"result\":\"0.499176\"},\"wrinkle\":{\"category\":[{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"forehead\"},{\"score\":90,\"count\":2,\"level\":\"lightly\",\"cls\":\"eyecorner\"},{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"crowfeet\"},{\"score\":100,\"count\":0,\"level\":\"none\",\"cls\":\"glabella\"},{\"score\":75,\"count\":2,\"level\":\"lightly\",\"cls\":\"nasolabial\"}],\"score\":93,\"underlying_score\":[0.038374618217435555,0.007674923643487111,0.042327127978290358,5.3213504404895639e-05,1.330337610122391e-05,2.1961128802020423e-05,0.02],\"mapped_score\":78.640000000000001,\"count\":4,\"level\":\"lightly\",\"mapped_score_exp\":86.209999999999994,\"filename\":\"prd-apiout3\/20210411\/4f5ca71d9527119827896905a1a3dab7-2251799813739021.jpg\"},\"moisture\":{\"result\":\"0.223\",\"filename\":\"prd-apiout3\/20210411\/773b58cc5372dd634c60005b076717d5-2251799813739020.jpg\",\"score\":\"79\",\"class\":[{\"result\":0.123,\"class\":\"left_cheek\"},{\"result\":0.27100000000000002,\"class\":\"right_cheek\"},{\"result\":0.31900000000000001,\"class\":\"forehead\"},{\"result\":0,\"class\":\"chin\"}],\"level\":\"lightly\",\"mapped_score\":65.5},\"code\":0,\"image_detect\":[],\"face_detect\":{\"rects\":[{\"y0\":190,\"x1\":949,\"x0\":83,\"y1\":1400}]},\"texture\":{\"score\":57,\"filename\":\"prd-apiout3\/20210411\/4b6e1c1132bb69094990239a771b9bcb-2251799813739023.jpg\",\"mapped_score\":48.140000000000001},\"sensitive\":{\"filename\":\"prd-apiout3\/20210411\/58ca4323927d3913bf234d7ab2ed4068-2251799813739025.jpg\",\"score\":99,\"type\":\"tolerance\",\"underlying_score\":null,\"mapped_score\":100},\"skin_type\":{\"mapped_score\":57.119999999999997,\"score\":51,\"category\":[{\"cls\":\"forehead\",\"score\":49,\"level\":\"moderately\",\"prob\":3.9871997833251953,\"exp_type\":\"mid\",\"type\":\"mid\",\"oil_score\":68.689999999999998},{\"cls\":\"nose\",\"score\":70,\"level\":\"lightly\",\"prob\":4.926600456237793,\"exp_type\":\"oil\",\"type\":\"oil\",\"oil_score\":94.819999999999993},{\"cls\":\"left_cheek\",\"score\":53,\"level\":\"moderately\",\"prob\":4.1198000907897949,\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"oil_score\":77.430000000000007},{\"cls\":\"right_cheek\",\"score\":55,\"level\":\"moderately\",\"prob\":4.1796998977661133,\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"oil_score\":76.969999999999999},{\"cls\":\"chin\",\"score\":49,\"level\":\"moderately\",\"prob\":3.9965002536773682,\"exp_type\":\"mid\",\"type\":\"mid\",\"oil_score\":71.129999999999995}],\"exp_type_v0\":\"mid_oil\",\"exp_type\":\"mid_oil\",\"type\":\"mid\",\"filename\":\"prd-apiout3\/20210411\/9f3253cce8b73e2d4a1a7a0db0e652d9-2251799813739029.jpg\",\"oil_score\":84.25,\"mix_extended\":\"mid\"},\"pockmark\":{\"category\":[{\"cls\":\"CC_DD\",\"count\":4,\"score\":89},{\"cls\":\"CC_DY\",\"count\":2,\"score\":80}],\"score\":82,\"underlying_score\":{\"CC_DY\":[0.0009545570983453828,0.000553827791489298,0.86178150773048401,0.001115794274902653,0.040000000000000001],\"CC_DD\":[0.003251138339801593,0.0008269049248155102,0.98292386531829834,0.0032882567087025197,0.080000000000000002]},\"mapped_score\":47.789999999999999,\"count\":6,\"level\":\"lightly\",\"filename\":\"prd-apiout3\/20210411\/55be7a6a8fdeea33c370d40bcd7e7e2c-2251799813739018.jpg\"},\"appearance\":{\"score\":75},\"roughness\":{\"score\":94,\"mapped_score\":79.939999999999998,\"level\":\"moderately\"},\"dark_circle\":{\"mapped_score\":68.840000000000003,\"score\":71,\"rightType\":\"XGX\",\"rightLevel\":\"lightly\",\"three_types\":{\"XGX\":{\"level\":\"lightly\",\"score\":68},\"SSX\":{\"level\":\"lightly\",\"score\":69},\"YYX\":{\"level\":\"none\",\"score\":100}},\"level\":\"lightly\",\"leftType\":\"HHX\",\"filename\":\"prd-apiout3\/20210411\/56871327f63e3ca5b898951217d6977c-2251799813739026.jpg\",\"type\":\"HHX\",\"leftLevel\":\"lightly\"},\"defeat_rank\":{\"pockmark\":0.11,\"blackhead\":0.56999999999999995,\"dark_circle\":0.95999999999999996,\"appearance\":0.5,\"pore\":0.84999999999999998,\"texture\":0.01,\"spot\":0.90000000000000002,\"chloasma\":0.76000000000000001,\"skin_type\":0.41999999999999998,\"moisture\":0.44,\"wrinkle\":0.42999999999999999},\"pore\":{\"category\":[{\"score\":100,\"cls\":\"forehead\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"left_cheek\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"right_cheek\",\"count\":0,\"level\":\"none\"}],\"score\":\"100\",\"area\":0,\"mapped_score\":100,\"count\":0,\"level\":\"none\",\"filename\":\"prd-apiout3\/20210411\/a1d8e2048e49d4cf286d0e006b903c43-2251799813739022.jpg\"},\"disease\":{\"niduses\":[{\"boxes\":[{\"coord\":[684,747,865,954],\"scores\":0.40903806686401367}],\"class\":\"CC\"},{\"boxes\":[],\"class\":\"MGJF\"},{\"boxes\":[{\"coord\":[507,837,574,899],\"scores\":0.44814836978912354},{\"coord\":[900,941,930,981],\"scores\":0.35853824019432068}],\"class\":\"PY\"}],\"filename\":\"prd-apiout3\/20210411\/6be8a5db74feed2d4aa4b140eb0308fe-2251799813739028.jpg\",\"result\":\"CC,PY\"},\"face_box\":{\"y0\":139,\"x1\":979,\"x0\":69,\"y1\":1440},\"filename\":\"prd-api3\/20210411\/4db27053fd015624c0b92ed498fd21e7-2251799813739015.jpg\",\"id\":\"26db5e1854606d680862cabbd7248e30\",\"error_detect_types\":34409021440,\"spot\":{\"category\":[{\"score\":100,\"cls\":\"Z_Z\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"B_HHB\",\"count\":0,\"level\":\"none\"},{\"score\":100,\"cls\":\"B_QB\",\"count\":0,\"level\":\"none\"},{\"score\":98,\"cls\":\"B_QTB\",\"count\":1,\"level\":\"lightly\"}],\"score\":99,\"underlying_score\":{\"B_QB\":[0,0,0,0,0],\"B_QTB\":[0.001535022655028666,0.001634414778150366,0.93918794393539429,0.0016344147781503662,0.02],\"Z_Z\":[0,0,0,0,0],\"B_HHB\":[0,0,0,0,0]},\"mapped_score\":79.680000000000007,\"count\":1,\"level\":\"lightly\",\"filename\":\"prd-apiout3\/20210411\/5d4df15deb822c5070ba5edad98f3104-2251799813739017.jpg\"},\"blackhead\":{\"mapped_score\":77.629999999999995,\"score\":\"98\",\"count\":2,\"level\":\"lightly\",\"area\":0.0008891800534911454,\"filename\":\"prd-apiout3\/20210411\/3b7288653efdb42a7804d87eac68bab8-2251799813739024.jpg\"},\"detect_types\":\"192853555199\",\"age\":{\"result\":35},\"emotion\":{\"result\":\"neutral\"},\"features\":{\"wearing_hat\":\"0.00000\",\"pointy_nose\":\"0.00000\",\"heavy_makeup\":\"0.01340\",\"mustache\":\"0.00006\",\"straight_hair\":\"0.00000\",\"wearing_necktie\":\"0.00000\",\"brown_hair\":\"0.00034\",\"no_beard\":\"0.00000\",\"gray_hair\":\"0.00000\",\"arched_eyebrows\":\"0.00000\",\"receding_hairline\":\"0.00000\",\"eyeglasses\":\"0.00000\",\"bushy_eyebrows\":\"0.00000\",\"high_cheekbones\":\"0.03727\",\"double_chin\":\"0.00008\",\"oval_face\":\"0.00000\",\"wavy_hair\":\"0.00424\",\"pale_skin\":\"0.00000\",\"wearing_necklace\":\"0.00000\",\"bangs\":\"0.00000\",\"goatee\":\"0.00002\",\"sideburns\":\"0.00002\",\"blond_hair\":\"0.00000\",\"female\":0.98350614309310913,\"rosy_cheeks\":\"0.00000\",\"bags_under_eyes\":\"0.32717\",\"bald\":\"0.00000\",\"chubby\":\"0.40677\",\"wearing_earrings\":\"0.00000\",\"mouth_slightly_open\":\"0.00000\",\"big_nose\":\"0.00000\",\"attractive\":\"0.07421\",\"blurry\":\"0.00000\",\"male\":1,\"big_lips\":\"0.00000\",\"young\":\"0.00000\",\"5_o_clock_shadow\":\"0.50617\",\"smiling\":\"0.00000\",\"black_hair\":\"0.00000\",\"wearing_lipstick\":\"0.00000\",\"narrow_eyes\":\"0.00000\"},\"acne\":{\"mapped_score\":100,\"filename\":\"prd-apiout3\/20210411\/b249df865c7fbb301b251eba9cd1b1cc-2251799813739019.jpg\",\"level\":\"none\",\"count\":0,\"category\":[],\"underlying_score\":null},\"chloasma\":{\"filename\":\"prd-apiout3\/20210411\/57958da02820d92b7b1274d40934ab54-2251799813739027.jpg\",\"count\":3,\"score\":94,\"mapped_score\":80.209999999999994}}",
+            "testDateTime": "2021-05-10 19:18:27",
+            "feeling": "3",
+            "sleep": "3",
+            "exercise": "3",
+            "appetite": "3",
+            "water": "2",
+            "defecation": "2",
+            "memo": "",
+            "physiological": null
         }
     ]
 }
-//响应失败
+//无数据
 {
-    "code": "400",
-    "message": "no data",
-    "success": false
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": []
 }
 ```
 
@@ -2782,7 +2750,7 @@
 > 字段说明:
 
 ```json
-    //生理0,1,2 多选
+    //生理开始1  生理结束2   生理中3 
     private String physiological;
     //正常流血 0,1,2,3 单选
     private String normalBleeding;
@@ -3128,6 +3096,183 @@
     "body": {
         "count": 21           //0没有数据  大于0则是有多少条数据
     }
+}
+```
+
+# 5.8 Get health and today by date range根据日期范围获取健康和今日的结合数据
+
+> 请求地址: http://example:8081/api/health/health-today/**{id}**?start=**{startDate}**&end={**endDate**}&key=android_1q2w3e4r&type=normal
+>
+> 请求示例: http://example:8081/api/health/health-today/gigi?start=2021-06-01&end=2021-06-28&key=android_1q2w3e4r&type=normal
+>
+> 请求方式: **GET**
+
+------
+
+> 响应体:
+
+```json
+//响应成功
+{
+    "code": "200",
+    "message": "Success",
+    "success": true,
+    "body": [
+        {
+            "physiological": "2",
+            "normalBleeding": "2",
+            "secretions": "6,12",
+            "notNormalBleeding": "",
+            "state": "3",
+            "temperature": 0.0,
+            "temperatureState": "3",
+            "weight": 0.0,
+            "fatRate": 0.0,
+            "headache": "",
+            "backPain": "",
+            "abdominalPain": "2",
+            "jointPain": "",
+            "uterusPain": "2",
+            "chestPain": "",
+            "ovulationTest": "",
+            "pregnancyTest": "",
+            "acyeterion": "",
+            "medicine": null,
+            "nutrition": null,
+            "doctor": null,
+            "sex": "",
+            "smoking": "",
+            "drinking": "",
+            "defecation": "",
+            "exchange": "",
+            "note": null,
+            "testDate": "2021-06-03",
+            "feeling": null,
+            "sleep": null,
+            "exercise": null,
+            "appetite": null,
+            "water": null,
+            "todayDefecation": null,
+            "memo": ""
+        },
+        {
+            "physiological": "1",
+            "normalBleeding": "2",
+            "secretions": "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15",
+            "notNormalBleeding": "1",
+            "state": "3",
+            "temperature": 0.0,
+            "temperatureState": "4",
+            "weight": 88.0,
+            "fatRate": 25.0,
+            "headache": "1",
+            "backPain": "2",
+            "abdominalPain": "3",
+            "jointPain": "2",
+            "uterusPain": "1",
+            "chestPain": "1",
+            "ovulationTest": "2",
+            "pregnancyTest": "1",
+            "acyeterion": "2",
+            "medicine": "好喜欢傻瓜耀武扬威有意无意之间，一生一世一生一世一个帅哥了🤵‍♀️因为要一生一世一生一世一个人山光水色骨折等一我也也往问我为什么一生一世一生一世一生一世寓意深远",
+            "nutrition": "6月1日，华为旗下HarmonyOS官微发布消息称，6月2日晚间，华为将举办鸿蒙操作系统及华为全场景新品发布会。根据华为此前的介绍，相对于鸿蒙 OS 1.0 来说，鸿蒙 OS 2.0 可登录更多智能终",
+            "doctor": "对于鸿蒙操作系统而言，其最大的特色还在于其是一款面向全场景的分布式操作系统。这意味着，它将不再仅仅依托手机作为核心体验，当手机产量下滑的时候，华为还可以通过支持可穿戴设备、电视，乃至新增的车机等设备，",
+            "sex": "1",
+            "smoking": "2",
+            "drinking": "3",
+            "defecation": "1,2,3,4,5,6,7,8,9,10,11,12",
+            "exchange": "1",
+            "note": "截至2021年5月21日，HarmonyOS生态已经发展了1000多个智能硬件合作伙伴，50多个模组和芯片解决方案合作伙伴，包括家居、出行、教育、办公、运动健康、政企、影音娱乐等多个领域的合作伙伴。其",
+            "testDate": "2021-06-17",
+            "feeling": null,
+            "sleep": null,
+            "exercise": null,
+            "appetite": null,
+            "water": null,
+            "todayDefecation": null,
+            "memo": null
+        },
+        {
+            "physiological": "1",
+            "normalBleeding": "",
+            "secretions": "",
+            "notNormalBleeding": "",
+            "state": "",
+            "temperature": 0.0,
+            "temperatureState": "",
+            "weight": 0.0,
+            "fatRate": 0.0,
+            "headache": "",
+            "backPain": "",
+            "abdominalPain": "",
+            "jointPain": "",
+            "uterusPain": "",
+            "chestPain": "",
+            "ovulationTest": "",
+            "pregnancyTest": "",
+            "acyeterion": "",
+            "medicine": "药 100字",
+            "nutrition": "营养品100字",
+            "doctor": "就诊100字",
+            "sex": "",
+            "smoking": "",
+            "drinking": "",
+            "defecation": "",
+            "exchange": "",
+            "note": "记事栏100字，新增",
+            "testDate": "2021-06-05",
+            "feeling": null,
+            "sleep": null,
+            "exercise": null,
+            "appetite": null,
+            "water": null,
+            "todayDefecation": null,
+            "memo": ""
+        },
+        {
+            "physiological": "",
+            "normalBleeding": "",
+            "secretions": "",
+            "notNormalBleeding": "",
+            "state": "",
+            "temperature": 0.0,
+            "temperatureState": "",
+            "weight": 0.0,
+            "fatRate": 0.0,
+            "headache": "",
+            "backPain": "",
+            "abdominalPain": "",
+            "jointPain": "",
+            "uterusPain": "",
+            "chestPain": "",
+            "ovulationTest": "",
+            "pregnancyTest": "",
+            "acyeterion": "",
+            "medicine": null,
+            "nutrition": null,
+            "doctor": null,
+            "sex": "",
+            "smoking": "",
+            "drinking": "",
+            "defecation": "",
+            "exchange": "",
+            "note": null,
+            "testDate": "2021-06-01",
+            "feeling": "2",
+            "sleep": "2",
+            "exercise": "2",
+            "appetite": "2",
+            "water": "2",
+            "todayDefecation": "2",
+            "memo": "再不会再喜欢喜欢好艹g厨房叮叮当当的人和g哥哥哈哈哈哥哥哥哥v虢国夫人堵塞广告费非常头疼发热共同反反复复人给哥哥很好用脱单吧、这么大岁数我还是很不错了。"
+        }
+    ]
+}
+//没有数据
+{
+    "code": "400",
+    "message": "no data",
+    "success": false
 }
 ```
 
